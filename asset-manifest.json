@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/VanshRathod-Portfolio/static/css/main.c66d7860.css",
-    "main.js": "/VanshRathod-Portfolio/static/js/main.559bcb13.js",
+    "main.js": "/VanshRathod-Portfolio/static/js/main.657f8aed.js",
     "static/js/488.a4bda24b.chunk.js": "/VanshRathod-Portfolio/static/js/488.a4bda24b.chunk.js",
     "static/media/slick.svg": "/VanshRathod-Portfolio/static/media/slick.2630a3e3eab21c607e21.svg",
     "static/media/slick.eot": "/VanshRathod-Portfolio/static/media/slick.a4e97f5a2a64f0ab1323.eot",
@@ -9,11 +9,11 @@
     "static/media/slick.woff": "/VanshRathod-Portfolio/static/media/slick.295183786cd8a1389865.woff",
     "index.html": "/VanshRathod-Portfolio/index.html",
     "main.c66d7860.css.map": "/VanshRathod-Portfolio/static/css/main.c66d7860.css.map",
-    "main.559bcb13.js.map": "/VanshRathod-Portfolio/static/js/main.559bcb13.js.map",
+    "main.657f8aed.js.map": "/VanshRathod-Portfolio/static/js/main.657f8aed.js.map",
     "488.a4bda24b.chunk.js.map": "/VanshRathod-Portfolio/static/js/488.a4bda24b.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.c66d7860.css",
-    "static/js/main.559bcb13.js"
+    "static/js/main.657f8aed.js"
   ]
 }
