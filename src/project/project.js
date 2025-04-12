@@ -9,7 +9,7 @@ const Projects = () => {
       techStack: 'React, Node.js, MongoDB',
       demoLink: '#',
       codeLink: 'https://github.com/vanshh13/GreenCart',
-      image: '/images/projects/GreenCart.png'
+      image: './images/projects/GreenCart.png'
     },
     {
       title: 'Doctor Appointment System',
@@ -17,7 +17,7 @@ const Projects = () => {
       techStack: 'React, Express.js, MongoDB',
       demoLink: '#',
       codeLink: 'https://github.com/vanshh13/Doctor_Appointment_System',
-      image: '/images/projects/Doctor_Appointment_System.png'
+      image: './images/projects/Doctor_Appointment_System.png'
     },
     {
       title: 'Doctor Appointment System | RestAPI',
@@ -25,7 +25,7 @@ const Projects = () => {
       techStack: 'Java',
       demoLink: '#',
       codeLink: 'https://github.com/vanshh13/AppointmentSystem',
-      image: '/images/projects/Doctor_Appointment_System_RestAPI.png'
+      image: './images/projects/Doctor_Appointment_System_RestAPI.png'
     }
     ,    
     {
@@ -34,7 +34,7 @@ const Projects = () => {
       techStack: 'Python, Django, MySQL',
       demoLink: '#',
       codeLink: 'https://github.com/vanshh13/Online-BookShop/tree/devlop-branch',
-      image: '/images/projects/Online_BookShop.png'
+      image: './images/projects/Online_BookShop.png'
     }
   ];
 

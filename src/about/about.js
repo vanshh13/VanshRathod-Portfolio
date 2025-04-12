@@ -21,7 +21,7 @@ const About = () => {
       </div>
 
       <div className="about-image">
-        <img src="/images/self_picture.jpg" alt="Vansh Profile" />
+        <img src="./images/self_picture.jpg" alt="Vansh Profile" />
       </div>
     </section>
   );

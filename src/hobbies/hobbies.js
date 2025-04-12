@@ -6,13 +6,13 @@ const Hobbies = () => {
   const sliderRef = useRef();
 
   const drawings = [
-    { id: 1, imgSrc: "/images/drawings/drawing1.jpg", alt: "Drawing 1", description: "" },
-    { id: 2, imgSrc: "/images/drawings/drawing2.jpg", alt: "Drawing 2", description: "" },
-    { id: 3, imgSrc: "/images/drawings/drawing3.jpg", alt: "Drawing 3", description: "" },
-    { id: 4, imgSrc: "/images/drawings/drawing4.jpg", alt: "Drawing 4", description: "" },
-    { id: 5, imgSrc: "/images/drawings/drawing5.jpg", alt: "Drawing 5", description: "" },
-    { id: 6, imgSrc: "/images/drawings/drawing6.jpg", alt: "Drawing 6", description: "" },
-    { id: 7, imgSrc: "/images/drawings/drawing7.jpg", alt: "Drawing 7", description: ""},
+    { id: 1, imgSrc: "./images/drawings/drawing1.jpg", alt: "Drawing 1", description: "" },
+    { id: 2, imgSrc: "./images/drawings/drawing2.jpg", alt: "Drawing 2", description: "" },
+    { id: 3, imgSrc: "./images/drawings/drawing3.jpg", alt: "Drawing 3", description: "" },
+    { id: 4, imgSrc: "./images/drawings/drawing4.jpg", alt: "Drawing 4", description: "" },
+    { id: 5, imgSrc: "./images/drawings/drawing5.jpg", alt: "Drawing 5", description: "" },
+    { id: 6, imgSrc: "./images/drawings/drawing6.jpg", alt: "Drawing 6", description: "" },
+    { id: 7, imgSrc: "./images/drawings/drawing7.jpg", alt: "Drawing 7", description: ""},
   ];
 
   const settings = {
