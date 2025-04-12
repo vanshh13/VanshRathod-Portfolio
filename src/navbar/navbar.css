@@ -1,0 +1,132 @@
+/* Navbar styling */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #333;
+  padding: 1rem 2rem;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  width: 50%;
+  margin: auto;
+  border-radius: 5cm;
+  transition: all 0.3s ease;
+}
+
+/* Logo styling */
+.logo {
+  color: #fff;
+  font-size: 1.5rem;
+  font-weight: bold;
+  transition: transform 0.3s ease;
+}
+
+.logo:hover {
+  transform: scale(1.1);
+}
+
+/* Navigation Links */
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
+}
+
+.nav-links a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 1rem;
+  position: relative;
+  padding: 10px 15px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  border-radius: 10px; /* Rounded corners for each link */
+}
+
+/* Hover and Active States */
+.nav-links a:hover,
+.nav-links a.active {
+  background-color: #00bcd4; /* Highlight color */
+  color: #fff;
+  transform: scale(1.1); /* Slight zoom effect */
+  box-shadow: 0 4px 8px rgba(0, 188, 212, 0.5);
+}
+
+.nav-links a:hover
+{
+  color: #fff;
+  transform: scale(1.1); /* Slight zoom effect */
+  box-shadow: 0 4px 8px rgba(0, 188, 212, 0.5);
+}
+/* Underline effect */
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: #00bcd4;
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+}
+
+.nav-links a:hover::after,
+.nav-links a.active::after {
+  transform: scaleX(1);
+}
+
+/* Hamburger Icon */
+.menu-icon {
+  display: none;
+  font-size: 2rem;
+  color: #fff;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  z-index: 1100;
+}
+
+.menu-icon.open {
+  transform: rotate(90deg);
+}
+
+/* Mobile Menu */
+@media (max-width: 1083px) {
+  .nav-links {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: #333;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    transform: scaleY(0);
+    transform-origin: top;
+    transition: transform 0.4s ease-in-out;
+    z-index: 999;
+    overflow-y: auto;
+    max-height: 300px;
+    border-radius: 10px; /* Rounded dropdown */
+    padding: 10px 0;
+  }
+
+  .nav-links.mobile-menu {
+    transform: scaleY(1);
+  }
+
+  /* Scrollbar for Overflow */
+  .nav-links.mobile-menu::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  .nav-links.mobile-menu::-webkit-scrollbar-thumb {
+    background-color: #00bcd4;
+    border-radius: 10px;
+  }
+
+  /* Show Hamburger */
+  .menu-icon {
+    display: block;
+  }
+}
