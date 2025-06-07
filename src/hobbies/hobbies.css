@@ -1,106 +1,163 @@
-/* Hobbies Section Styling */
+/* Hobbies Section Styling - Compact dark theme with FASTER animations */
 .hobbies-section {
-    background-color: #f7f7f7;
-    padding: 4rem 2rem;
-    text-align: center;
-    border-radius: 8px;
-    margin-top: 2rem;
-  }
-  
-  .hobbies-section h2 {
-    font-size: 2.5rem;
-    color: #333;
-    margin-bottom: 2rem;
-    font-weight: 600;
-    letter-spacing: 1px;
+  text-align: center;
+  padding: 4rem 2rem; /* Compact padding for a smaller section */
+  background-color: #000; /* Solid black background */
+  color: #fff; /* Default text color white for the section */
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+
+  /* Initial state: hidden and slightly off-screen */
+  opacity: 0;
+  transform: translateY(15px);
+  /* FASTER overall transition for the section's entry */
+  transition: opacity 0.4s ease-out, transform 0.4s ease-out; /* Reduced from 0.6s */
+}
+
+/* This class is added by React (via Intersection Observer) when the section is in view */
+.hobbies-section.animate-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Inner wrapper for content (if you have one) - it will inherit parent's animation */
+.hobbies-content-wrapper {
+  max-width: 800px; /* Max width for content */
+  width: 100%;
+  margin-left: auto; /* Center the wrapper */
+  margin-right: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  z-index: 1; /* Ensure content is above background elements */
+}
+
+
+/* Individual element animations - These will trigger when .hobbies-section.animate-in is active */
+/* FASTER animation durations and slightly adjusted delays for a snappier staggered effect */
+.hobbies-section.animate-in .intro-text {
+  animation: slideInUp 0.4s ease-out 0s both; /* Reduced from 0.5s, delay from 0.1s */
+}
+
+.hobbies-section.animate-in h2 {
+  animation: slideInUp 0.4s ease-out 0.1s both; /* Reduced from 0.5s, delay from 0.2s */
+}
+
+.hobbies-section.animate-in .hobby-description {
+  animation: slideInUp 0.4s ease-out 0.2s both; /* Reduced from 0.5s, delay from 0.3s */
+}
+
+.hobbies-section.animate-in .btn { /* Target the generic .btn class */
+  animation: zoomIn 0.5s ease-out 0.3s both; /* Reduced from 0.6s, delay from 0.4s */
+}
+
+/* --- Text Styling for visibility on black background --- */
+
+.intro-text {
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: #a0a0a0; /* Lighter grey for good contrast */
+  margin-bottom: 0.5rem;
+}
+
+.hobbies-section h2 { /* Targeting h2 within the section */
+  font-size: 3.5rem; /* Adjusted for overall compact section */
+  color: #fff; /* Pure white */
+  margin-bottom: 1.5rem;
+  line-height: 1.1;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.1); /* Subtle glow */
+  font-weight: 900;
+}
+
+.hobby-description {
+  font-size: 1.1rem; /* Clear body text size */
+  color: #ccc; /* Light grey for body text */
+  margin-bottom: 2rem; /* Space before button */
+  line-height: 1.6;
+  max-width: 600px; /* Constrain width for readability */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.hobby-description strong {
+    color: #fff; /* Ensure bold text stands out in white */
+}
+
+/* --- Button Styling (for generic .btn class) --- */
+.btn { /* Directly styling .btn to be consistent globally if possible */
+    display: inline-block;
+    padding: 0.9rem 2.5rem;
+    background-color: #fff; /* White background */
+    color: #000; /* Black text */
+    text-decoration: none;
+    border-radius: 30px; /* Pill shape */
+    font-weight: bold;
+    font-size: 1.05rem;
+    /* This transition is for hover/active states, not the initial animation */
+    transition: all 0.3s ease-in-out;
+    border: 2px solid #fff; /* White border */
+    box-shadow: 0 5px 15px rgba(255, 255, 255, 0.2); /* Subtle glow */
     text-transform: uppercase;
-    position: relative;
+    letter-spacing: 0.8px;
+}
+
+.btn:hover {
+    background-color: #000; /* Invert colors on hover */
+    color: #fff;
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(255, 255, 255, 0.4);
+    border-color: #fff;
+}
+
+.btn:active {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(255, 255, 255, 0.3);
+}
+
+/* Keyframe Definitions (Place these in your GLOBAL CSS file if used across multiple components!) */
+@keyframes slideInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes zoomIn {
+  from { opacity: 0; transform: scale(0.85); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .hobbies-section {
+    padding: 3rem 5%;
   }
-  
-  .hobbies-section h2::after {
-    content: "";
-    display: block;
-    width: 50px;
-    height: 3px;
-    background-color: #00bcd4;
-    margin: 1rem auto 0;
+  .hobbies-section h2 {
+    font-size: 2.8rem;
   }
-  
-  /* Carousel Container */
-  .drawing-container {
-    padding: 10px;
-    transition: transform 0.5s ease, box-shadow 0.5s ease;
-    opacity: 0.7;
-    transform: scale(0.9);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    height: 100%;
-  }
-  
-  /* Highlight the Center Slide */
-  .slick-center .drawing-container {
-    transform: scale(1.2);
-    opacity: 1;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
-    border-radius: 15px;
-    z-index: 2;
-  }
-  
-  /* Image Styling */
-  .drawing-img {
-    width: 100%;
-    height: 400px;
-    object-fit: contain; /* Keeps full image visible */
-    border-radius: 10px;
-    background-color: #fff;
-    padding: 10px;
-  }
-  
-  /* Description Text */
-  .drawing-description {
+  .intro-text,
+  .hobby-description {
     font-size: 1rem;
-    color: #333;
-    margin-top: 1rem;
-    font-style: italic;
-    padding: 0 15px;
-    opacity: 0;
-    transition: opacity 0.5s ease-in-out;
-    max-width: 80%;
-    line-height: 1.5;
   }
-  
-  /* Show Description for Center Slide */
-  .slick-center .drawing-description {
-    opacity: 1;
+  .btn {
+    padding: 0.8rem 2rem;
+    font-size: 0.95rem;
   }
-  
-  /* Arrows Styling */
-  .slick-prev, .slick-next {
-    background-color: rgba(0, 188, 212, 0.9);
-    border-radius: 50%;
-    width: 45px;
-    height: 45px;
-    z-index: 2;
+}
+
+@media (max-width: 480px) {
+  .hobbies-section {
+    padding: 2.5rem 3%;
   }
-  
-  .slick-prev:hover, .slick-next:hover {
-    background-color: rgba(0, 151, 167, 0.9);
+  .hobbies-section h2 {
+    font-size: 2.2rem;
   }
-  
-  .slick-prev:before, .slick-next:before {
-    color: white;
-    font-size: 24px;
+  .intro-text,
+  .hobby-description {
+    font-size: 0.95rem;
   }
-  
-  /* Dots Styling */
-  .slick-dots li button:before {
-    color: #00bcd4;
-    font-size: 14px;
+  .btn {
+    padding: 0.7rem 1.8rem;
+    font-size: 0.9rem;
   }
-  
-  .slick-dots li.slick-active button:before {
-    color: #0097a7;
-  }
-  
+}

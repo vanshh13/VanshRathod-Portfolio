@@ -1,70 +1,340 @@
 /* Home Section Styling */
 .home {
-    display: flex;
-    align-items: center;
+  display: flex;
+  justify-content: center; /* Center the content wrapper */
+  align-items: center;
+  min-height: 100vh;
+  padding: 8rem 5% 4rem; /* Increased padding-top for spacing below navbar, adjusted bottom */
+  background-color: #000; /* Solid black background - STAYS STATIC AND BLACK */
+  color: #fff; /* Default text color white */
+  position: relative;
+  overflow: hidden; /* Crucial for particles to stay within bounds */
+  text-align: center; /* Default center text for mobile first */
+}
+
+/* Particle Background Animation */
+.particle-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  pointer-events: none; /* Allows interaction with content beneath */
+  z-index: 0; /* Keep behind main content */
+}
+
+.particle {
+  position: absolute;
+  background-color: rgba(255, 255, 255, 0.1); /* Subtle white particles */
+  border-radius: 50%;
+  animation: moveParticle linear infinite;
+  opacity: 0; /* Start invisible */
+}
+
+/* Manually generated particle styles (extend this for all 50 particles) */
+.particle:nth-child(1) {
+  width: 3px; height: 3px; left: 10%; top: 20%;
+  animation-duration: 10s; animation-delay: 0.3s; /* Adjusted */
+}
+.particle:nth-child(2) {
+  width: 4px; height: 4px; left: 80%; top: 5%;
+  animation-duration: 15s; animation-delay: 0.8s; /* Adjusted */
+}
+.particle:nth-child(3) {
+  width: 2px; height: 2px; left: 30%; top: 90%;
+  animation-duration: 9s; animation-delay: 0.5s; /* Adjusted */
+}
+.particle:nth-child(4) {
+  width: 5px; height: 5px; left: 55%; top: 40%;
+  animation-duration: 13s; animation-delay: 1.5s; /* Adjusted */
+}
+.particle:nth-child(5) {
+  width: 3px; height: 3px; left: 5%; top: 70%;
+  animation-duration: 8s; animation-delay: 1.0s; /* Adjusted */
+}
+.particle:nth-child(6) {
+  width: 4px; height: 4px; left: 70%; top: 60%;
+  animation-duration: 17s; animation-delay: 0.2s; /* Adjusted */
+}
+.particle:nth-child(7) {
+  width: 2px; height: 2px; left: 20%; top: 10%;
+  animation-duration: 11s; animation-delay: 0.7s; /* Adjusted */
+}
+/* ... continue for all 50 particles with varied values ... */
+
+
+@keyframes moveParticle {
+  0% {
+    transform: translateY(0) translateX(0);
+    opacity: 0;
+  }
+  20% {
+    opacity: 1; /* Fade in */
+  }
+  80% {
+    opacity: 1; /* Stay visible */
+  }
+  100% {
+    transform: translateY(-100vh) translateX(calc(var(--particle-x-offset, 0) * 1vw));
+    opacity: 0; /* Fade out */
+  }
+}
+
+/* Inner wrapper for content and image - THIS IS WHAT WILL ANIMATE */
+.home-content-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  max-width: 1200px;
+  width: 100%;
+  gap: 3rem;
+  position: relative;
+  z-index: 1;
+
+  /* Faster transition for the content block's fade-in/slide-up */
+  opacity: 0;
+  transform: translateY(15px); /* Slightly less translate */
+  transition: opacity 0.5s ease-out, transform 0.5s ease-out; /* Faster overall transition */
+}
+
+.home.animate-in .home-content-wrapper {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+/* Content Area */
+.home-content {
+  max-width: 650px;
+  text-align: center;
+}
+
+/* Individual element animations - ONLY apply when .home.animate-in is active */
+/* Reduced duration and delay for snappier appearance */
+.home.animate-in .intro-text {
+  animation: slideInUp 0.6s ease-out 0.1s both; /* Faster, earlier start */
+}
+
+.home.animate-in h1 {
+  animation: slideInUp 0.6s ease-out 0.2s both; /* Faster, earlier start */
+}
+
+.home.animate-in h2 {
+  animation: slideInUp 0.6s ease-out 0.3s both; /* Faster, earlier start */
+}
+
+/* Typing effect specific styles - These are constant, not part of entrance animation */
+.typing-text {
+  display: inline-block;
+  color: #fff;
+}
+
+.cursor {
+  color: #fff;
+  animation: blink 0.7s infinite step-end; /* Slightly faster blink */
+  font-weight: normal;
+}
+
+@keyframes blink {
+  from, to { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.home.animate-in .description-text {
+  animation: slideInUp 0.6s ease-out 0.4s both; /* Faster, earlier start */
+}
+
+/* Call to Action Button - Animation applied only when .home.animate-in is active */
+.home.animate-in .btn {
+  animation: zoomIn 0.6s ease-out 0.5s both; /* Faster, earlier start */
+}
+
+
+/* Image Section - Animation applied only when .home.animate-in is active */
+.home.animate-in .home-image {
+  animation: zoomIn 0.8s ease-out 0.2s both; /* Faster */
+}
+
+
+/* Keyframe Definitions - These remain unchanged */
+@keyframes slideInUp {
+  from { opacity: 0; transform: translateY(20px); } /* Reduced translate distance */
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes zoomIn {
+  from { opacity: 0; transform: scale(0.85); } /* Slightly less zoom from initial state */
+  to { opacity: 1; transform: scale(1); }
+}
+
+
+/* --- General Styling for non-animated states and hover effects --- */
+
+.intro-text {
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: #bbb;
+  margin-bottom: 0.5rem;
+}
+
+.home-content h1 {
+  font-size: 4rem;
+  color: #fff;
+  margin-bottom: 1rem;
+  line-height: 1.1;
+  text-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+  font-weight: 900;
+}
+
+.home-content h2 {
+  font-size: 2.2rem;
+  color: #fff;
+  margin-bottom: 1.5rem;
+  min-height: 2.8rem;
+  font-weight: 700;
+}
+
+.description-text {
+  font-size: 1.15rem;
+  color: #ccc;
+  margin-bottom: 2.5rem;
+  line-height: 1.7;
+  max-width: 550px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.btn {
+  display: inline-block;
+  padding: 0.9rem 2.5rem;
+  background-color: #fff;
+  color: #000;
+  text-decoration: none;
+  border-radius: 30px;
+  font-weight: bold;
+  font-size: 1.05rem;
+  transition: all 0.3s ease-in-out;
+  border: 2px solid #fff;
+  box-shadow: 0 5px 15px rgba(255, 255, 255, 0.2);
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+}
+
+.btn:hover {
+  background-color: #000;
+  color: #fff;
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(255, 255, 255, 0.4);
+  border-color: #fff;
+}
+
+.btn:active {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.3);
+}
+
+.home-image {
+  position: relative;
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+  overflow: hidden;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.7);
+  transition: all 0.4s ease;
+  border: 3px solid rgba(255, 255, 255, 0.5);
+  flex-shrink: 0;
+}
+
+.home-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  filter: brightness(85%);
+  transition: filter 0.5s ease;
+}
+
+.home-image:hover img {
+  filter: grayscale(0%);
+}
+
+
+/* Responsive Design */
+@media (min-width: 1024px) {
+  .home-content-wrapper {
+    flex-direction: row;
     justify-content: space-between;
-    padding: 4rem 8%;
-    background-color: #f5f5f5;
-    min-height: 100vh;
+    align-items: center;
+    text-align: left;
   }
-  
+
   .home-content {
-    max-width: 600px;
+    text-align: left;
+    margin-right: 4rem;
   }
-  
+
+  .description-text {
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .home {
+    padding: 6rem 5% 4rem;
+  }
+
   .home-content h1 {
     font-size: 3rem;
-    color: #333;
-    margin-bottom: 0.5rem;
   }
-  
+
   .home-content h2 {
-    font-size: 2rem;
-    color: #555;
-    margin-bottom: 1rem;
+    font-size: 1.8rem;
   }
-  
-  .home-content p {
-    font-size: 1.1rem;
-    color: #666;
-    margin-bottom: 2rem;
-    line-height: 1.6;
+
+  .description-text {
+    font-size: 1rem;
   }
-  
+
   .btn {
-    display: inline-block;
     padding: 0.8rem 2rem;
-    background-color: #00bcd4;
-    color: #fff;
-    text-decoration: none;
-    border-radius: 5px;
-    font-weight: bold;
-    transition: background-color 0.3s ease;
+    font-size: 0.95rem;
   }
-  
-  .btn:hover {
-    background-color: #0097a7;
+
+  .home-image {
+    width: 200px;
+    height: 200px;
+    margin-top: 3rem;
   }
-  
-  .home-image img {
-    width: 400px;
-    border-radius: 50%;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+@media (max-width: 480px) {
+  .home {
+    padding: 5rem 3% 3rem;
   }
-  
-  /* Responsive Design */
-  @media (max-width: 1083px) {
-    .home {
-      flex-direction: column;
-      text-align: center;
-    }
-  
-    .home-content {
-      margin-bottom: 2rem;
-    }
-  
-    .home-image img {
-      width: 300px;
-    }
+
+  .home-content h1 {
+    font-size: 2.5rem;
   }
-  
+
+  .home-content h2 {
+    font-size: 1.5rem;
+    min-height: 2rem;
+  }
+
+  .description-text {
+    font-size: 0.95rem;
+  }
+
+  .btn {
+    padding: 0.7rem 1.8rem;
+    font-size: 0.9rem;
+  }
+
+  .home-image {
+    width: 150px;
+    height: 150px;
+  }
+}

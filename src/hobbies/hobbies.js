@@ -1,59 +1,60 @@
 import React, { useEffect, useRef } from "react";
-import Slider from "react-slick";
+import { NavLink } from "react-router-dom";
 import "./hobbies.css";
 
 const Hobbies = () => {
-  const sliderRef = useRef();
-
-  const drawings = [
-    { id: 1, imgSrc: "./images/drawings/drawing1.jpg", alt: "Drawing 1", description: "" },
-    { id: 2, imgSrc: "./images/drawings/drawing2.jpg", alt: "Drawing 2", description: "" },
-    { id: 3, imgSrc: "./images/drawings/drawing3.jpg", alt: "Drawing 3", description: "" },
-    { id: 4, imgSrc: "./images/drawings/drawing4.jpg", alt: "Drawing 4", description: "" },
-    { id: 5, imgSrc: "./images/drawings/drawing5.jpg", alt: "Drawing 5", description: "" },
-    { id: 6, imgSrc: "./images/drawings/drawing6.jpg", alt: "Drawing 6", description: "" },
-    { id: 7, imgSrc: "./images/drawings/drawing7.jpg", alt: "Drawing 7", description: ""},
-  ];
-
-  const settings = {
-    dots: true,
-    infinite: true,
-    speed: 600,
-    slidesToShow: 3,
-    slidesToScroll: 1,
-    centerMode: true,
-    centerPadding: "0px",
-    focusOnSelect: true,
-    autoplay: true,
-    autoplaySpeed: 3000,
-    arrows: true,
-  };
+  const hobbiesRef = useRef(null); // Create a ref to attach to the section
 
   useEffect(() => {
-    const handleKeyDown = (event) => {
-      if (event.key === "ArrowLeft") {
-        sliderRef.current.slickPrev();
-      } else if (event.key === "ArrowRight") {
-        sliderRef.current.slickNext();
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            // Add 'animate-in' class when the section enters the viewport
+            entry.target.classList.add("animate-in");
+          } else {
+            // Remove 'animate-in' class when the section leaves the viewport
+            // This resets the element to its initial hidden state,
+            // allowing the animation to replay when it re-enters.
+            entry.target.classList.remove("animate-in");
+          }
+        });
+      },
+      {
+        threshold: 0.2, // Trigger when 20% of the section is visible
+      }
+    );
+
+    if (hobbiesRef.current) {
+      observer.observe(hobbiesRef.current);
+    }
+
+    // Cleanup function: disconnect the observer when the component unmounts
+    return () => {
+      if (hobbiesRef.current) {
+        observer.unobserve(hobbiesRef.current);
       }
     };
-    window.addEventListener("keydown", handleKeyDown);
-    return () => {
-      window.removeEventListener("keydown", handleKeyDown);
-    };
-  }, []);
+  }, []); // Empty dependency array means this effect runs once after initial render
 
   return (
-    <section id="hobbies" className="hobbies-section">
-      <h2>My Drawing Skills</h2>
-      <Slider {...settings} ref={sliderRef}>
-        {drawings.map((drawing) => (
-          <div key={drawing.id} className="drawing-container">
-            <img src={drawing.imgSrc} alt={drawing.alt} className="drawing-img" />
-            <p className="drawing-description">{drawing.description}</p>
-          </div>
-        ))}
-      </Slider>
+    // Attach the ref to your section
+    <section id="creativeside" className="hobbies-section" ref={hobbiesRef}>
+      <div className="hobbies-content-wrapper">
+        <p className="intro-text">Beyond the Keyboard</p>
+        <h2>My Creative Pursuits</h2>
+        <p className="hobby-description">
+          While coding is my passion, I also dive into the world of **sketching and anime-inspired art**.
+          It's a fantastic way to unwind, ignite fresh ideas, and approach problem-solving from a different angle.
+          This creative balance is key to my overall growth and well-being.
+        </p>
+        <NavLink
+          to="/art-gallery"
+          className="btn"
+        >
+          Explore My Gallery
+        </NavLink>
+      </div>
     </section>
   );
 };

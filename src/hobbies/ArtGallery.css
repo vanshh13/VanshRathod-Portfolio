@@ -1,0 +1,266 @@
+/* General Section Styling */
+.art-gallery-section {
+  text-align: center;
+  padding: 4rem 2rem; /* Consistent compact padding */
+  background-color: #000; /* Black background */
+  color: #fff; /* Default text color white */
+  position: relative;
+  overflow: hidden;
+  margin-top: 30px;
+  z-index: 1; /* Ensures content is above potential background elements */
+
+  /* Initial state for the section's entry animation */
+  opacity: 0;
+  transform: translateY(15px); /* Starts slightly below its final position */
+  transition: opacity 0.4s ease-out, transform 0.4s ease-out; /* Faster transition for entry */
+}
+
+/* Class added by JavaScript when section is in view */
+.art-gallery-section.animate-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px; /* Horizontal padding for content inside container */
+}
+
+/* Gallery Header Styling */
+.gallery-header {
+  text-align: center;
+  margin-bottom: 3rem; /* Adjusted for compact section */
+}
+
+.gallery-header .intro-text {
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: #a0a0a0; /* Light grey for contrast */
+  margin-bottom: 0.5rem;
+  animation: slideInUp 0.4s ease-out 0s both; /* Faster animation, 0s delay for immediate start */
+}
+
+.gallery-header h2 {
+  font-size: 3.5rem; /* Consistent heading size (e.g., from Home, About) */
+  font-weight: 900;
+  color: #fff; /* White heading text */
+  margin-bottom: 1.5rem;
+  line-height: 1.1; /* Tighter line height for large headings */
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.1); /* Subtle glow effect */
+  animation: slideInUp 0.4s ease-out 0.1s both; /* Faster animation, slightly delayed */
+}
+
+.gallery-description {
+  font-size: 1.1rem;
+  color: #ccc; /* Light grey for body text */
+  max-width: 700px;
+  margin: 0 auto 2rem; /* Centered with margin-bottom */
+  line-height: 1.6; /* Comfortable reading line height */
+  animation: slideInUp 0.4s ease-out 0.2s both; /* Faster animation, further delayed */
+}
+
+/* Gallery Grid */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* At least 300px, but flexible */
+  gap: 25px; /* Increased gap for better spacing */
+  padding: 0; /* No internal padding for the grid itself, handled by section padding */
+}
+
+.gallery-item {
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  border-radius: 16px; /* Slightly larger border-radius for modern look */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background-color: #111; /* Dark background for items */
+  border: 1px solid #333; /* Subtle border */
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* Initial shadow */
+}
+
+.gallery-item:hover {
+  transform: translateY(-8px) scale(1.02); /* Lifts and slightly scales */
+  box-shadow: 0 12px 30px rgba(102, 126, 234, 0.4); /* Accent color glow on hover */
+  border-color: #667eea; /* Accent color border */
+}
+
+.gallery-img {
+  width: 100%;
+  /* Adjusted height for A4 images */
+  height: 350px; /* Increased height to better fit A4 portrait aspect ratio */
+  border-radius: 16px 16px 0 0; /* Only top corners rounded */
+  object-fit: cover; /* Ensures images cover the area without distortion, might crop edges */
+  display: block; /* Removes extra space below image */
+  transition: transform 0.5s ease; /* Smooth zoom on overlay hover */
+}
+
+.gallery-item:hover .gallery-img {
+  transform: scale(1.08); /* Slight zoom on image when hovering item */
+}
+
+/*
+  The .overlay and .overlay-text CSS rules are kept here for completeness,
+  but they will not have any effect since the corresponding JSX elements
+  are commented out in ArtGallery.jsx.
+*/
+.overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0) 100%);
+  color: #fff;
+  padding: 1rem;
+  font-size: 0.95rem;
+  text-align: left;
+  transform: translateY(100%);
+  transition: transform 0.4s ease-out;
+  border-radius: 0 0 16px 16px;
+}
+
+.gallery-item:hover .overlay {
+  transform: translateY(0);
+}
+
+.overlay-text {
+  opacity: 0;
+  transition: opacity 0.4s ease-out 0.1s;
+}
+
+.gallery-item:hover .overlay-text {
+  opacity: 1;
+}
+
+/* Lightbox Modal */
+.lightbox {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.9);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.lightbox-img {
+  max-width: 90%;
+  max-height: 90%;
+  border-radius: 12px;
+  box-shadow: 0 0 40px rgba(102, 126, 234, 0.6);
+  animation: zoomIn 0.4s ease;
+  cursor: zoom-out;
+  object-fit: contain; /* Ensures entire image is visible within the lightbox */
+}
+
+.lightbox-close-btn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: none;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  padding: 10px;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+  z-index: 1001;
+}
+
+.lightbox-close-btn:hover {
+  color: #667eea;
+  background-color: rgba(255, 255, 255, 0.1);
+  transform: scale(1.1);
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes zoomIn {
+  from {
+    transform: scale(0.8);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 992px) {
+  .gallery-grid {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  }
+  .gallery-header h2 {
+    font-size: 3rem;
+  }
+  .gallery-img {
+    height: 400px; /* Adjusted height for tablets */
+  }
+}
+
+@media (max-width: 768px) {
+  .art-gallery-section {
+    padding: 3rem 5%;
+  }
+  .gallery-grid {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+  }
+  .gallery-header h2 {
+    font-size: 2.5rem;
+  }
+  .intro-text,
+  .gallery-description {
+    font-size: 0.95rem;
+  }
+  .gallery-img {
+    height: 380px; /* Adjusted height for medium mobile */
+  }
+}
+
+@media (max-width: 480px) {
+  .art-gallery-section {
+    padding: 2.5rem 3%;
+  }
+  .gallery-grid {
+    grid-template-columns: 1fr; /* Single column on mobile */
+    gap: 15px;
+  }
+  .gallery-header h2 {
+    font-size: 2rem;
+  }
+  .gallery-img {
+    height: 300px; /* Keep a decent height for single column on mobile */
+  }
+  .lightbox-close-btn {
+    top: 15px;
+    right: 15px;
+    padding: 8px;
+  }
+  .lightbox-close-btn svg {
+    width: 30px;
+    height: 30px;
+  }
+}

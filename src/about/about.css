@@ -1,64 +1,198 @@
 /* About Section Styling */
 .about {
+  display: flex;
+  justify-content: center; /* Center the content wrapper */
+  align-items: center;
+  min-height: 100vh;
+  padding: 8rem 5% 4rem; /* Match home section padding */
+  background-color: #000; /* Solid black background - STAYS STATIC AND BLACK */
+  color: #fff; /* Default text color white */
+  position: relative;
+  overflow: hidden; /* Prevent content overflow */
+  text-align: center; /* Default center text for mobile first */
+  z-index: 1; /* Ensure it stacks correctly above any global backgrounds */
+
+  /* REMOVED: opacity and transform from here. The background is always visible. */
+  /* REMOVED: transition from here. */
+}
+
+/* Inner wrapper for content - THIS IS WHAT WILL ANIMATE */
+.about-content {
+  max-width: 800px; /* Wider content area than home */
+  text-align: center; /* Center text within content area */
+  position: relative; /* Ensure content is above any background elements */
+  z-index: 1;
+
+  /* Initial state for the content block before animation */
+  opacity: 0;
+  transform: translateY(15px); /* Slightly less translate for faster feel */
+  /* Faster transition for the content block's fade-in/slide-up */
+  transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+
+/* This class is added by React to the .about section, but we'll use it to target .about-content */
+.about.animate-in .about-content { /* TARGETS the content when section is active */
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Individual element animations - ONLY apply when .about.animate-in is active */
+/* These animations will re-play every time 'animate-in' is applied */
+.about.animate-in .intro-text {
+  animation: slideInUp 0.6s ease-out 0.1s both; /* Faster, earlier start */
+}
+
+.about.animate-in h2 {
+  animation: slideInUp 0.6s ease-out 0.2s both; /* Faster, earlier start */
+}
+
+.about.animate-in p:nth-of-type(1) { /* First paragraph */
+  animation: slideInUp 0.6s ease-out 0.3s both; /* Faster, earlier start */
+}
+
+.about.animate-in p:nth-of-type(2) { /* Second paragraph */
+  animation: slideInUp 0.6s ease-out 0.4s both; /* Faster, earlier start */
+}
+
+.about.animate-in .about-buttons {
+  animation: zoomIn 0.6s ease-out 0.5s both; /* Faster, earlier start */
+}
+
+
+/* --- General Styling for non-animated states and consistent theming --- */
+/* These styles define how elements look when NOT animating or for their base appearance */
+
+.intro-text {
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: #bbb; /* Lighter grey for intro */
+  margin-bottom: 0.5rem;
+}
+
+.about-content h2 {
+  font-size: 4rem; /* Match home h1 size for impact */
+  color: #fff; /* Pure white */
+  margin-bottom: 1.5rem;
+  line-height: 1.1;
+  text-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+  font-weight: 900; /* Extra bold */
+}
+
+.about-content p {
+  font-size: 1.15rem; /* Consistent with home description text */
+  color: #ccc; /* Lighter grey for main paragraph */
+  margin-bottom: 1.5rem; /* Space between paragraphs */
+  line-height: 1.7;
+  max-width: 700px; /* Control max width of description */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.about-content strong {
+    color: #fff; /* Highlight important tech terms */
+}
+
+.about-buttons {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 4rem 8%;
-    background-color: #fff;
-    min-height: 100vh;
-  }
-  
-  .about-content {
-    max-width: 600px;
-  }
-  
-  .about-content h2 {
-    font-size: 2.8rem;
-    color: #333;
-    margin-bottom: 1rem;
-  }
-  
-  .about-content p {
-    font-size: 1.1rem;
-    color: #555;
-    margin-bottom: 1.5rem;
-    line-height: 1.6;
-  }
-  
-  .about-content .btn {
-    display: inline-block;
-    padding: 0.8rem 2rem;
-    background-color: #00bcd4;
-    color: #fff;
-    text-decoration: none;
-    border-radius: 5px;
-    font-weight: bold;
-    transition: background-color 0.3s ease;
-  }
-  
-  .about-content .btn:hover {
-    background-color: #0097a7;
-  }
-  
-  .about-image img {
-    width: 400px;
-    border-radius: 10px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-  }
-  
-  /* Responsive Design */
-  @media (max-width: 1083px) {
-    .about {
-      flex-direction: column;
-      text-align: center;
-    }
-  
+    flex-wrap: wrap; /* Allow buttons to wrap on smaller screens */
+    justify-content: center;
+    gap: 1.5rem; /* Space between buttons */
+    margin-top: 2.5rem; /* Space above buttons */
+}
+
+/* Call to Action Button (Consistent with home.css) */
+.btn {
+  display: inline-block;
+  padding: 0.9rem 2.5rem;
+  background-color: #fff; /* White background */
+  color: #000; /* Black text */
+  text-decoration: none;
+  border-radius: 30px; /* Pill shape */
+  font-weight: bold;
+  font-size: 1.05rem;
+  transition: all 0.3s ease-in-out;
+  border: 2px solid #fff; /* White border */
+  box-shadow: 0 5px 15px rgba(255, 255, 255, 0.2); /* Subtle white shadow */
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+}
+
+.btn:hover {
+  background-color: #000; /* Invert colors on hover */
+  color: #fff;
+  transform: translateY(-5px); /* More pronounced lift */
+  box-shadow: 0 8px 25px rgba(255, 255, 255, 0.4); /* Stronger shadow */
+  border-color: #fff;
+}
+
+.btn:active {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.3);
+}
+
+
+/* Keyframe Definitions (Copy from home.css to ensure they are available) */
+@keyframes slideInUp {
+  from { opacity: 0; transform: translateY(20px); } /* Adjusted from 30px */
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes zoomIn {
+  from { opacity: 0; transform: scale(0.85); } /* Adjusted from 0.8 */
+  to { opacity: 1; transform: scale(1); }
+}
+
+
+/* Responsive Design */
+@media (min-width: 1024px) {
     .about-content {
-      margin-bottom: 2rem;
+        text-align: center;
     }
-  
-    .about-image img {
-      width: 300px;
-    }
+}
+
+@media (max-width: 768px) {
+  .about {
+    padding: 6rem 5% 4rem;
   }
-  
+
+  .about-content h2 {
+    font-size: 3rem;
+  }
+
+  .about-content p {
+    font-size: 1rem;
+  }
+
+  .btn {
+    padding: 0.8rem 2rem;
+    font-size: 0.95rem;
+  }
+
+  .about-buttons {
+      gap: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .about {
+    padding: 5rem 3% 3rem;
+  }
+
+  .about-content h2 {
+    font-size: 2.5rem;
+  }
+
+  .about-content p {
+    font-size: 0.95rem;
+  }
+
+  .btn {
+    padding: 0.7rem 1.8rem;
+    font-size: 0.9rem;
+  }
+
+  .about-buttons {
+      flex-direction: column;
+      gap: 0.8rem;
+  }
+}

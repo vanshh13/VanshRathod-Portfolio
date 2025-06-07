@@ -1,87 +1,279 @@
 /* Projects Section Styling */
 .projects {
-    padding: 4rem 8%;
-    background-color: #f5f5f5;
-    text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 8rem 5% 4rem;
+  background-color: #000;
+  color: #fff;
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+  z-index: 1;
+}
+
+/* Inner wrapper for content - THIS IS WHAT WILL ANIMATE */
+.projects-content-wrapper {
+  max-width: 1200px;
+  width: 100%;
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  opacity: 0;
+  transform: translateY(15px); /* Slightly less translate for faster feel */
+  transition: opacity 0.5s ease-out, transform 0.5s ease-out; /* Faster overall transition */
+}
+
+/* Target the content wrapper when the section is active */
+.projects.animate-in .projects-content-wrapper {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Individual element animations - ONLY apply when .projects.animate-in is active */
+.projects.animate-in .intro-text {
+  animation: slideInUp 0.5s ease-out 0.1s both; /* Faster, earlier start */
+}
+
+.projects.animate-in h2 {
+  animation: slideInUp 0.5s ease-out 0.2s both; /* Faster, earlier start */
+}
+
+/* Stagger animations for project cards */
+.projects.animate-in .project-card {
+  animation: slideInUp 0.5s ease-out both; /* Faster base animation */
+}
+.projects.animate-in .project-card:nth-child(1) { animation-delay: 0.3s; } /* Adjusted delay */
+.projects.animate-in .project-card:nth-child(2) { animation-delay: 0.4s; } /* Adjusted delay */
+.projects.animate-in .project-card:nth-child(3) { animation-delay: 0.5s; } /* Adjusted delay */
+.projects.animate-in .project-card:nth-child(4) { animation-delay: 0.6s; } /* Adjusted delay */
+.projects.animate-in .project-card:nth-child(5) { animation-delay: 0.7s; } /* Adjusted delay */
+.projects.animate-in .project-card:nth-child(6) { animation-delay: 0.8s; } /* Adjusted delay */
+
+.projects.animate-in .view-toggle-btn {
+  animation: zoomIn 0.6s ease-out 0.9s both; /* Faster, earlier start */
+}
+
+/* --- General Styling for non-animated states and consistent theming --- */
+
+.intro-text {
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: #bbb;
+  margin-bottom: 0.5rem;
+}
+
+.projects h2 {
+  font-size: 4rem;
+  color: #fff;
+  margin-bottom: 3rem;
+  line-height: 1.1;
+  text-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+  font-weight: 900;
+}
+
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  width: 100%;
+  margin-bottom: 3rem;
+}
+
+.project-card {
+  background-color: #1a1a1a;
+  border-radius: 12px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+  padding: 1.5rem;
+  text-align: left;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.project-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.6);
+  background-color: #2a2a2a;
+}
+
+/* Project Image Container */
+.project-image-container {
+  position: relative;
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+  border-radius: 8px;
+  margin-bottom: 1.2rem;
+  cursor: pointer;
+}
+
+.project-main-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  filter:  brightness(100%);
+  transition: filter 0.4s ease, transform 10s linear;
+}
+
+.project-image-container:hover .project-main-image {
+  filter: grayscale(0%) brightness(100%);
+  transform: scale(1.05) rotate(2deg);
+}
+
+/* Project Hover Overlay for "View Details" */
+.project-hover-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  border-radius: 8px;
+}
+
+.project-image-container:hover .project-hover-overlay {
+  opacity: 1;
+}
+
+.overlay-text {
+  color: #fff;
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+
+.project-card h3 {
+  font-size: 1.6rem;
+  color: #fff;
+  margin-bottom: 0.7rem;
+  font-weight: 700;
+}
+
+.project-card .description {
+  font-size: 0.95rem;
+  color: #ccc;
+  margin-bottom: 1rem;
+  line-height: 1.6;
+  flex-grow: 1;
+}
+
+/* Tech Stack Styling (Reused from previous updates) */
+.tech-stack-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.tech-tag {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  padding: 0.4rem 0.8rem;
+  border-radius: 5px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  transition: background-color 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.tech-tag:hover {
+  background-color: #fff;
+  color: #000;
+}
+
+
+.project-links {
+  display: flex;
+  justify-content: flex-start;
+  gap: 1rem;
+  margin-top: auto;
+}
+
+.btn.project-btn {
+  padding: 0.7rem 1.5rem;
+  font-size: 0.9rem;
+}
+
+.view-toggle-btn {
+  margin-top: 2rem;
+  padding: 1rem 3rem;
+  font-size: 1.1rem;
+}
+
+
+/* Keyframe Definitions (updated to match faster values) */
+@keyframes slideInUp {
+  from { opacity: 0; transform: translateY(15px); } /* Reduced translate distance */
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes zoomIn {
+  from { opacity: 0; transform: scale(0.85); } /* Slightly less zoom from initial state */
+  to { opacity: 1; transform: scale(1); }
+}
+
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .project-grid {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   }
-  
+}
+
+@media (max-width: 768px) {
+  .projects {
+    padding: 6rem 5% 4rem;
+  }
   .projects h2 {
-    font-size: 2.8rem;
-    color: #333;
-    margin-bottom: 3rem;
+    font-size: 3rem;
   }
-  
-  .project-container {
-    display: flex;
-    gap: 2rem;
-    flex-wrap: wrap;
-    justify-content: center;
+  .project-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
   }
-  
   .project-card {
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    width: 320px;
-    padding: 1.5rem;
-    text-align: left;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-  }
-  
-  .project-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
-  }
-  
-  .project-card img {
     width: 100%;
-    height: 180px;
-    object-fit: cover;
-    border-radius: 8px;
-    margin-bottom: 1rem;
+    max-width: 350px;
+    margin: 0 auto;
   }
-  
-  .project-card h3 {
-    font-size: 1.5rem;
-    color: #333;
-    margin-bottom: 0.5rem;
-  }
-  
-  .project-card p {
-    font-size: 1rem;
-    color: #666;
-    margin-bottom: 1rem;
-    line-height: 1.5;
-  }
-  
-  .project-links {
-    display: flex;
-    justify-content: space-between;
-  }
-  
-  .project-links .btn {
+  .btn.project-btn {
     padding: 0.6rem 1.2rem;
-    background-color: #00bcd4;
-    color: #fff;
-    text-decoration: none;
-    border-radius: 5px;
-    font-weight: bold;
-    transition: background-color 0.3s ease;
+    font-size: 0.85rem;
   }
-  
-  .project-links .btn:hover {
-    background-color: #0097a7;
+  .view-toggle-btn {
+    padding: 0.9rem 2.5rem;
+    font-size: 1rem;
   }
-  
-  /* Responsive Design */
-  @media (max-width: 768px) {
-    .project-container {
-      flex-direction: column;
-      align-items: center;
-    }
-  
-    .project-card {
-      width: 90%;
-    }
+}
+
+@media (max-width: 480px) {
+  .projects {
+    padding: 5rem 3% 3rem;
   }
-  
+  .projects h2 {
+    font-size: 2.5rem;
+  }
+  .project-links {
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+}

@@ -1,100 +1,463 @@
-/* Contact Section Styling */
-.contact {
-    padding: 4rem 8%;
-    background-color: #fff;
-    text-align: center;
+/* General Layout & Section Animation */
+.contact-section {
+  text-align: center;
+  padding: 4rem 2rem; /* Consistent compact padding */
+  background-color: #000; /* Black background */
+  color: #fff; /* Default text color white */
+  position: relative;
+  overflow: hidden;
+  z-index: 1; /* Ensures content is above potential background elements */
+
+  /* Initial state for the section's entry animation */
+  opacity: 0;
+  transform: translateY(15px); /* Starts slightly below its final position */
+  transition: opacity 0.4s ease-out, transform 0.4s ease-out; /* Faster transition for entry */
+}
+
+/* Class added by JavaScript when section is in view */
+.contact-section.animate-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px; /* Horizontal padding for container content */
+}
+
+/* Header Styling */
+.contact-header {
+  text-align: center;
+  margin-bottom: 3rem; /* Adjusted for compact section */
+}
+
+.contact-header .intro-text { /* Matches style of other sections (e.g., About, Hobbies) */
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: #a0a0a0; /* Light grey for contrast */
+  margin-bottom: 0.5rem;
+  animation: slideInUp 0.4s ease-out 0s both; /* Faster animation, 0s delay for immediate start */
+}
+
+.contact-header h2 {
+  font-size: 3.5rem; /* Consistent heading size (e.g., from Home, About) */
+  font-weight: 900;
+  color: #fff; /* White heading text */
+  margin-bottom: 1.5rem;
+  line-height: 1.1; /* Tighter line height for large headings */
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.1); /* Subtle glow effect */
+  animation: slideInUp 0.4s ease-out 0.1s both; /* Faster animation, slightly delayed */
+}
+
+.contact-description { /* Specific styling for the paragraph below the heading */
+  font-size: 1.1rem;
+  color: #ccc; /* Light grey for body text */
+  max-width: 600px;
+  margin: 0 auto 2rem; /* Centered with margin-bottom */
+  line-height: 1.6; /* Comfortable reading line height */
+  animation: slideInUp 0.4s ease-out 0.2s both; /* Faster animation, further delayed */
+}
+
+/* Contact Content Layout (Info Cards & Form) */
+.contact-content {
+  display: grid;
+  grid-template-columns: 1fr 2fr; /* Info on left (1 part), form on right (2 parts) */
+  gap: 3rem; /* Gap between info and form columns */
+  max-width: 1000px; /* Max width for the entire content block */
+  margin: 0 auto 3rem; /* Center the content block, with space below */
+  align-items: start; /* Aligns items to the top of their grid area */
+}
+
+/* Contact Information Cards */
+.contact-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem; /* Space between individual info cards */
+}
+
+.info-card {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem; /* Space between icon and text */
+  padding: 1.5rem;
+  background-color: #111; /* Darker background for cards */
+  border-radius: 12px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* Darker shadow for depth */
+  border: 1px solid #333; /* Darker border for definition */
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth hover transition */
+}
+
+.info-card:hover {
+  transform: translateY(-5px); /* Lifts the card slightly */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5); /* More prominent shadow on hover */
+}
+
+.info-icon {
+  width: 50px;
+  height: 50px;
+  background-color: #667eea; /* Consistent accent color for icons */
+  border-radius: 10px; /* Slightly rounded rectangle */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff; /* White icon color */
+  flex-shrink: 0; /* Prevents icon from shrinking on smaller screens */
+}
+
+.info-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #fff; /* White title text */
+  margin-bottom: 4px; /* Small space below title */
+}
+
+.info-description {
+  color: #a0a0a0; /* Light grey description text */
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+/* Contact Form */
+.contact-form {
+  background-color: #111; /* Darker background for the form container */
+  padding: 2.5rem;
+  border-radius: 16px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3); /* Darker, larger shadow */
+  border: 1px solid #333; /* Darker border */
+}
+
+.form-group {
+  margin-bottom: 1.5rem; /* Space between form fields */
+}
+
+.input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center; /* Vertically centers the icon with the input */
+}
+
+.input-icon {
+  position: absolute;
+  left: 1rem; /* Positions icon inside the input field */
+  color: #a0a0a0; /* Icon color */
+  z-index: 1; /* Ensures icon is above the input */
+  pointer-events: none; /* Allows clicks to pass through to the input */
+}
+
+.textarea-icon {
+  top: 1rem; /* Adjusts icon position for textarea */
+  align-self: flex-start; /* Aligns icon to the top of textarea */
+}
+
+.form-input,
+.form-textarea {
+  width: 100%;
+  padding: 1rem 1rem 1rem 3rem; /* Increased left padding to make space for the icon */
+  border: 2px solid #222; /* Darker border for inputs */
+  border-radius: 10px;
+  font-size: 1rem;
+  transition: all 0.3s ease; /* Smooth transition for focus states */
+  background-color: #222; /* Darker background for inputs */
+  color: #fff; /* White text input */
+  outline: none; /* Removes default focus outline */
+  box-sizing: border-box; /* Includes padding and border in element's total width/height */
+}
+
+.form-input::placeholder,
+.form-textarea::placeholder {
+  color: #666; /* Darker placeholder text */
+}
+
+.form-input:focus,
+.form-textarea:focus {
+  border-color: #667eea; /* Accent color on focus */
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.2); /* Subtle glow on focus */
+}
+
+.form-textarea {
+  resize: vertical; /* Allows vertical resizing by user */
+  min-height: 120px;
+  font-family: inherit; /* Inherits font from parent for consistent look */
+}
+
+.input-error {
+  border-color: #ef4444 !important; /* Red border for validation errors, !important to override focus */
+}
+
+.error-text {
+  color: #ef4444; /* Red text for validation errors */
+  font-size: 0.875rem;
+  margin-top: 0.5rem;
+  display: block; /* Ensures it takes up full width below input */
+  text-align: left;
+}
+
+.submit-error {
+  color: #ef4444;
+  background-color: #440000; /* Darker red background for general submit errors */
+  border: 1px solid #ef4444;
+  padding: 0.75rem;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+/* Specific Button Styling for Contact Section (Isolated) */
+.contact-btn {
+  display: inline-block;
+  padding: 0.9rem 2.5rem;
+  background-color: #fff; /* White background */
+  color: #000; /* Black text */
+  text-decoration: none;
+  border-radius: 30px; /* Pill shape */
+  font-weight: bold;
+  font-size: 1.05rem;
+  transition: all 0.3s ease-in-out; /* Smooth transitions for hover effects */
+  border: 2px solid #fff; /* White border */
+  box-shadow: 0 5px 15px rgba(255, 255, 255, 0.2); /* Subtle glow */
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  width: 100%; /* Make button full width of its container */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem; /* Space between icon and text */
+  margin-top: 1rem; /* Space above button */
+  cursor: pointer; /* Indicates it's clickable */
+  outline: none; /* Removes default focus outline */
+}
+
+/* Animation for the button when the section is in view */
+.contact-section.animate-in .contact-btn {
+  animation: zoomIn 0.5s ease-out 0.3s both; /* Faster animation, slightly delayed */
+}
+
+.contact-btn:hover {
+  background-color: #000; /* Invert colors on hover */
+  color: #fff;
+  transform: translateY(-5px); /* Lifts button on hover */
+  box-shadow: 0 8px 25px rgba(255, 255, 255, 0.4); /* Stronger shadow on hover */
+  border-color: #fff;
+}
+
+.contact-btn:active {
+  transform: translateY(-2px); /* Presses button down on click */
+  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.3);
+}
+
+.contact-btn-loading { /* Style for button when submitting */
+  background-color: #555; /* Darker grey when loading */
+  cursor: not-allowed; /* Changes cursor to indicate non-clickable */
+  transform: none; /* Override hover transform */
+  box-shadow: none; /* Override hover shadow */
+  color: #ccc;
+  border-color: #555;
+}
+
+.contact-btn-loading:hover { /* Ensures loading state stays consistent on hover */
+  background-color: #555;
+  color: #ccc;
+  transform: none;
+  box-shadow: none;
+  border-color: #555;
+}
+
+.loading-spinner {
+  width: 20px;
+  height: 20px;
+  border: 2px solid #ffffff; /* White border */
+  border-top: 2px solid transparent; /* Top part transparent for spinner effect */
+  border-radius: 50%; /* Makes it a circle */
+  animation: spin 1s linear infinite; /* Rotation animation */
+}
+
+/* Success Message */
+.success-message {
+  padding: 1rem;
+  background-color: #004400; /* Dark green background */
+  color: #bbf7d0; /* Light green text */
+  border: 1px solid #228822; /* Green border */
+  border-radius: 8px;
+  font-weight: 500;
+  margin-top: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem; /* Space between icon and text */
+  animation: fadeIn 0.5s ease-in; /* Faster fade-in animation */
+}
+
+.success-icon {
+  width: 24px;
+  height: 24px;
+  background-color: #22c55e; /* Brighter green icon background */
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  font-weight: bold;
+  font-size: 14px;
+  flex-shrink: 0;
+}
+
+/* Social Section (Icon-Only Links) */
+.social-section {
+  text-align: center;
+  padding: 2.5rem; /* Adjusted padding */
+  background-color: #111; /* Darker background */
+  border-radius: 16px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  border: 1px solid #333;
+  margin-top: 3rem; /* Space from contact form */
+}
+
+.social-title {
+  font-size: 2rem; /* Adjusted for better hierarchy */
+  font-weight: 600;
+  color: #fff; /* White title */
+  margin-bottom: 2rem; /* Space below title */
+}
+
+.social-links {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem; /* Space between icons */
+  flex-wrap: wrap; /* Allows links to wrap to next line on smaller screens */
+}
+
+.social-link {
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Centers the icon within the link area */
+  width: 60px; /* Fixed width for a circular icon */
+  height: 60px; /* Fixed height for a circular icon */
+  background-color: #222; /* Darker background for individual icons */
+  border-radius: 50%; /* Makes them circular */
+  text-decoration: none;
+  color: #ccc; /* Icon color */
+  transition: all 0.3s ease; /* Smooth hover transition */
+  border: 2px solid transparent; /* Border for hover effect */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+}
+
+/* Social Media Specific Hover Effects (Official Logo Colors) */
+.social-link.github:hover {
+  background-color: #333; /* Darker grey, almost black for GitHub */
+  color: #fff; /* White icon */
+  border-color: #333;
+}
+
+.social-link.linkedin:hover {
+  background-color: #0077B5; /* LinkedIn blue */
+  color: #fff;
+  border-color: #0077B5;
+}
+
+.social-link.instagram:hover {
+  /* Instagram gradient is complex for simple CSS background-color */
+  /* We'll use a common reddish-purple to represent it or a linear gradient */
+  background-color: #C13584; /* A common Instagram purple/pink */
+  background: linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%);
+  color: #fff;
+  border-color: #C13584; /* Match border to the color */
+}
+
+.social-link.youtube:hover {
+  background-color: #FF0000; /* YouTube red */
+  color: #fff;
+  border-color: #FF0000;
+}
+
+.social-link:hover {
+  transform: translateY(-5px) scale(1.1); /* Lifts and slightly zooms on hover */
+  box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4); /* Stronger shadow on hover - this might be overridden by specific hovers */
+  /* Removed the general border-color and background-color from here
+     because specific overrides are now handled by .social-link.NAME:hover */
+}
+
+/* Responsive Design */
+@media (max-width: 992px) { /* Adjust for larger tablets/smaller desktops */
+  .contact-content {
+    grid-template-columns: 1fr; /* Stack info and form vertically */
+    gap: 3rem; /* Maintain gap between stacked sections */
   }
-  
-  .contact h2 {
+}
+
+@media (max-width: 768px) {
+  .contact-section {
+    padding: 3rem 5%; /* Reduced padding on medium screens */
+  }
+  .contact-header h2 {
     font-size: 2.8rem;
-    color: #333;
-    margin-bottom: 1rem;
   }
-  
-  .contact p {
-    font-size: 1.1rem;
-    color: #555;
-    margin-bottom: 2rem;
-  }
-  
-  .contact-container {
-    display: flex;
-    justify-content: space-between;
-    gap: 2rem;
-    flex-wrap: wrap;
-  }
-  
-  .contact-form {
-    flex: 1;
-    max-width: 500px;
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-  }
-  
-  .contact-form input,
-  .contact-form textarea {
-    width: 100%;
-    padding: 0.8rem;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+  .intro-text,
+  .contact-description {
     font-size: 1rem;
   }
-  
-  .contact-form textarea {
-    resize: none;
+  .contact-form,
+  .social-section {
+    padding: 2rem; /* Reduced padding for internal sections */
   }
-  
-  .contact-form .btn {
-    padding: 0.8rem;
-    background-color: #00bcd4;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+  .info-card {
+    padding: 1.2rem;
+    gap: 1rem;
   }
-  
-  .contact-form .btn:hover {
-    background-color: #0097a7;
+  .info-icon {
+    width: 45px; /* Slightly smaller icon size */
+    height: 45px;
   }
-  
-  /* Social Links */
-  .social-links {
-    flex: 1;
-    max-width: 300px;
-    text-align: left;
-  }
-  
-  .social-links h3 {
-    font-size: 1.8rem;
-    color: #333;
-    margin-bottom: 1rem;
-  }
-  
-  .social-links a {
-    display: block;
-    margin-bottom: 0.8rem;
-    color: #00bcd4;
-    text-decoration: none;
+  .info-title {
     font-size: 1.1rem;
   }
-  
-  .social-links a:hover {
-    text-decoration: underline;
+  .info-description {
+    font-size: 0.9rem;
   }
-  
-  /* Responsive Design */
-  @media (max-width: 768px) {
-    .contact-container {
-      flex-direction: column;
-      align-items: center;
-    }
-  
-    .contact-form, .social-links {
-      width: 100%;
-      max-width: 500px;
-    }
+  .contact-btn { /* Targeted directly */
+    padding: 0.8rem 2rem;
+    font-size: 0.95rem;
   }
-  
+  .social-title {
+    font-size: 1.8rem;
+  }
+  .social-link {
+    width: 55px; /* Slightly smaller social icons on tablets */
+    height: 55px;
+  }
+}
+
+@media (max-width: 480px) {
+  .contact-section {
+    padding: 2.5rem 3%; /* Further reduced padding on small screens */
+  }
+  .contact-header h2 {
+    font-size: 2.2rem;
+  }
+  .contact-form,
+  .social-section {
+    padding: 1.5rem; /* Even smaller padding for internal sections */
+  }
+  .form-input,
+  .form-textarea {
+    padding: 0.8rem 0.8rem 0.8rem 2.5rem; /* Adjusted padding for smaller inputs */
+  }
+  .input-icon {
+    left: 0.8rem; /* Adjusted icon position */
+  }
+  .contact-btn { /* Targeted directly */
+    padding: 0.7rem 1.8rem;
+    font-size: 0.9rem;
+  }
+  .social-title {
+    font-size: 1.5rem;
+  }
+  .social-links {
+    flex-direction: column; /* Stack social links vertically on very small screens */
+    align-items: center; /* Center them when stacked */
+  }
+  .social-link {
+    width: 50px; /* Smallest social icon size on mobile */
+    height: 50px;
+  }
+}

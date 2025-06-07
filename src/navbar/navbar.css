@@ -1,132 +1,264 @@
-/* Navbar styling */
+/* Core Navbar Styling */
+.navbar-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 700; /* <-- IMPORTANT: Changed from 1000 to 900 */
+  transition: all 0.3s ease;
+  display: flex;
+  justify-content: center;
+  padding-top: 10px;
+}
+
 .navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #333;
-  padding: 1rem 2rem;
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  width: 50%;
-  margin: auto;
-  border-radius: 5cm;
-  transition: all 0.3s ease;
+  background-color: #000;
+  padding: 0.8rem 2.5rem;
+  border-radius: 50px;
+  width: 90%;
+  max-width: 1100px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.7);
+  transition: all 0.4s ease-in-out;
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-/* Logo styling */
+/* Scrolled Navbar State */
+.navbar-container.scrolled .navbar {
+  background-color: rgba(0, 0, 0, 0.9);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.9);
+  backdrop-filter: blur(8px);
+  border-color: rgba(255, 255, 255, 0.05);
+}
+
+/* Logo Styling */
 .logo {
   color: #fff;
-  font-size: 1.5rem;
-  font-weight: bold;
-  transition: transform 0.3s ease;
+  font-size: 1.8rem;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  transition: transform 0.3s ease, color 0.3s ease;
+  flex-shrink: 0;
+  margin-right: 2rem;
 }
 
 .logo:hover {
-  transform: scale(1.1);
+  transform: scale(1.05);
+  color: #f0f0f0;
 }
 
 /* Navigation Links */
 .nav-links {
-  list-style: none;
   display: flex;
-  gap: 1.5rem;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+  gap: 2rem;
+  list-style: none;
 }
 
 .nav-links a {
-  color: #fff;
+  color: #888;
   text-decoration: none;
   font-size: 1rem;
+  font-weight: 600;
   position: relative;
-  padding: 10px 15px;
-  transition: background-color 0.3s ease, transform 0.3s ease;
-  border-radius: 10px; /* Rounded corners for each link */
+  padding: 0.5rem 0.8rem;
+  transition: all 0.3s ease;
+  border-radius: 5px;
 }
 
-/* Hover and Active States */
-.nav-links a:hover,
+/* Link Hover and Active States */
+.nav-links a:hover {
+  color: #fff;
+  transform: translateY(-2px);
+}
+
 .nav-links a.active {
-  background-color: #00bcd4; /* Highlight color */
   color: #fff;
-  transform: scale(1.1); /* Slight zoom effect */
-  box-shadow: 0 4px 8px rgba(0, 188, 212, 0.5);
+  transform: translateY(-2px);
+  background-color: rgba(255, 255, 255, 0.08);
 }
 
-.nav-links a:hover
-{
-  color: #fff;
-  transform: scale(1.1); /* Slight zoom effect */
-  box-shadow: 0 4px 8px rgba(0, 188, 212, 0.5);
-}
-/* Underline effect */
+/* Underline effect for hover and active */
 .nav-links a::after {
   content: '';
   position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
+  bottom: 0px;
+  left: 50%;
+  width: 0;
   height: 2px;
-  background-color: #00bcd4;
-  transform: scaleX(0);
-  transition: transform 0.3s ease;
+  background-color: #fff;
+  transform: translateX(-50%);
+  transition: width 0.3s ease-out;
 }
 
 .nav-links a:hover::after,
 .nav-links a.active::after {
-  transform: scaleX(1);
+  width: 80%;
 }
 
-/* Hamburger Icon */
+/* Hire Me Button */
+.hire-me-btn {
+  background-color: #fff;
+  color: #000;
+  text-decoration: none;
+  padding: 0.7rem 1.4rem;
+  border-radius: 30px;
+  font-weight: bold;
+  font-size: 0.9rem;
+  transition: all 0.3s ease-in-out;
+  border: 2px solid #fff;
+  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.2);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  flex-shrink: 0;
+  margin-left: 2rem;
+}
+
+.hire-me-btn:hover {
+  background-color: #000;
+  color: #fff;
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 6px 18px rgba(255, 255, 255, 0.4);
+  border-color: #fff;
+}
+
+.hire-me-btn:active {
+  transform: translateY(-1px);
+  box-shadow: 0 3px 10px rgba(255, 255, 255, 0.3);
+}
+
+/* Hamburger Icon (Mobile) */
 .menu-icon {
   display: none;
   font-size: 2rem;
   color: #fff;
   cursor: pointer;
   transition: transform 0.3s ease;
-  z-index: 1100;
+  z-index: 1100; /* Ensure it's on top of a lower navbar z-index */
 }
 
 .menu-icon.open {
   transform: rotate(90deg);
 }
 
-/* Mobile Menu */
-@media (max-width: 1083px) {
-  .nav-links {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    width: 100%;
-    background-color: #333;
-    flex-direction: column;
-    align-items: center;
-    gap: 1rem;
+/* Mobile Menu Dropdown */
+.nav-links.mobile-menu-open {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background-color: #000;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  transform-origin: top;
+  animation: slideDown 0.4s ease-in-out forwards;
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.5);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 1rem 0;
+  max-height: 80vh;
+  overflow-y: auto;
+  display: flex;
+}
+
+/* Mobile Menu Link Styling */
+.nav-links.mobile-menu-open a {
+  width: 90%;
+  text-align: center;
+  padding: 0.8rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.nav-links.mobile-menu-open a:last-child {
+  border-bottom: none;
+}
+
+
+@keyframes slideDown {
+  from {
     transform: scaleY(0);
-    transform-origin: top;
-    transition: transform 0.4s ease-in-out;
-    z-index: 999;
-    overflow-y: auto;
-    max-height: 300px;
-    border-radius: 10px; /* Rounded dropdown */
-    padding: 10px 0;
+    opacity: 0;
   }
-
-  .nav-links.mobile-menu {
+  to {
     transform: scaleY(1);
+    opacity: 1;
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .navbar {
+    width: 95%;
+    padding: 0.7rem 2rem;
   }
 
-  /* Scrollbar for Overflow */
-  .nav-links.mobile-menu::-webkit-scrollbar {
-    width: 6px;
+  .logo {
+    font-size: 1.6rem;
+    margin-right: 1.5rem;
   }
 
-  .nav-links.mobile-menu::-webkit-scrollbar-thumb {
-    background-color: #00bcd4;
-    border-radius: 10px;
+  .nav-links {
+    gap: 1.5rem;
   }
 
-  /* Show Hamburger */
+  .nav-links a {
+    font-size: 0.95rem;
+  }
+
+  .hire-me-btn {
+    padding: 0.6rem 1.2rem;
+    font-size: 0.85rem;
+    margin-left: 1.5rem;
+  }
+}
+
+@media (max-width: 800px) {
+  .navbar {
+    padding: 0.6rem 1.5rem;
+    width: 98%;
+  }
+
+  .logo {
+    font-size: 1.5rem;
+    margin-right: 1rem;
+  }
+
+  .nav-links {
+    display: none;
+  }
+
+  .hire-me-btn {
+    display: none;
+  }
+
   .menu-icon {
     display: block;
+  }
+
+  .mobile-nav-dropdown {
+    background-color: #000;
+  }
+}
+
+@media (max-width: 500px) {
+  .navbar-container {
+    padding-top: 5px;
+  }
+  .navbar {
+    border-radius: 0;
+    width: 100%;
+    padding: 0.5rem 1rem;
+  }
+
+  .logo {
+    font-size: 1.3rem;
+  }
+
+  .menu-icon {
+    font-size: 1.8rem;
   }
 }
