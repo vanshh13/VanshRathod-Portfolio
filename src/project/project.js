@@ -1,15 +1,15 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './project.css';
-import ProjectDetailModal from './ProjectDetailModal'; // Import the new modal component
+import ProjectDetailModal from './ProjectDetailModal'; 
 
 const Projects = () => {
-  const allProjectData = [ // Renamed to allProjectData to clarify it's the full list
+  const allProjectData = [
     {
       title: 'GreenCart',
       description: 'An online platform for selling organic products with real-time order tracking and secure payments. Features product Browse, shopping cart, and authenticated user experience.',
       fullDescription: 'GreenCart is a comprehensive e-commerce solution built for organic produce. It provides features like user authentication, shopping cart management, real-time order tracking, and secure payment gateway integration. The intuitive admin panel allows for easy product, order, and user management.', // Added full description
-      techStack: ['React', 'Node.js', 'Express.js', 'MongoDB', 'JWT', 'Stripe API'], // Array for easier mapping to tags
-      demoLink: 'https://greencart.netlify.app/', // Example live demo link
+      techStack: ['React', 'Node.js', 'Express.js', 'MongoDB', 'JWT', 'Stripe API'], 
+      demoLink: 'https://green-cart-pi-sooty.vercel.app/', 
       codeLink: 'https://github.com/vanshh13/GreenCart',
       images: ['./images/projects/GreenCart/GreenCart.png', './images/projects/GreenCart/ProductList.png', './images/projects/GreenCart/ShoppingCart_step1.png','./images/projects/GreenCart/AdminDashboard.png','./images/projects/GreenCart/OrderManagment.png'] // Array of images
     },
