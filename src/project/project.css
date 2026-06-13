@@ -212,12 +212,13 @@
 }
 
 .btn.project-btn {
-  padding: 0.6rem 1rem;
+  padding: 0.6rem 0.8rem;
   font-size: 0.8rem;
   text-align: center;
-  flex: 1 1 calc(50% - 0.3rem);
-  min-width: 105px;
+  flex: 1 1 0%;
+  min-width: 0;
   box-sizing: border-box;
+  white-space: nowrap;
 }
 
 .view-toggle-btn {
@@ -263,8 +264,10 @@
     margin: 0 auto;
   }
   .btn.project-btn {
-    padding: 0.6rem 1.2rem;
-    font-size: 0.85rem;
+    padding: 0.6rem 0.8rem;
+    font-size: 0.8rem;
+    flex: 1 1 0%;
+    min-width: 0;
   }
   .view-toggle-btn {
     padding: 0.9rem 2.5rem;
