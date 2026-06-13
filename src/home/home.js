@@ -9,7 +9,7 @@ const Home = () => {
   const homeRef = useRef(null); // Ref to observe the home section
   const hasAnimated = useRef(false); // New ref to track if it has animated at least once
 
-  const texts = ['Full-Stack Developer', 'Tech Enthusiast', 'Problem Solver'];
+  const texts = ['Software Developer', 'Tech Enthusiast', 'Problem Solver'];
 
   useEffect(() => {
     const currentText = texts[currentIndex];
@@ -31,7 +31,7 @@ const Home = () => {
         } else {
           setIsDeleting(false);
           setCurrentIndex((prevIndex) => (prevIndex + 1) % texts.length);
-          setTimeout(() => {}, pauseBeforeNext);
+          setTimeout(() => { }, pauseBeforeNext);
         }
       }
     }, isDeleting ? deletingSpeed : typingSpeed);
@@ -90,7 +90,7 @@ const Home = () => {
             </span>
           </h2>
           <p className="description-text">
-            I'm a final-year Computer Engineering student and a passionate <b>Full-Stack Developer</b>. I build both web and mobile applications, constantly exploring new tools and technologies to refine my craft. My drive is to solve real-world problems through practical, scalable, and impactful solutions.
+            A Computer Engineering graduate and aspiring Software Developer with a passion for building practical and user-friendly applications. I enjoy learning new technologies, solving problems, and turning ideas into real-world projects.
           </p>
           <a href="#projects" className="btn">View My Work</a>
         </div>

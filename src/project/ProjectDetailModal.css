@@ -1,82 +1,134 @@
-/* Modal Overlay */
+/* Fullscreen Modal Overlay */
 .modal-overlay {
   position: fixed;
-  top: 900;
+  top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0, 0, 0, 0.8);
+  background-color: rgba(10, 10, 10, 0.98);
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 999999; /* <-- IMPORTANT: Increased z-index to a very high value */
-  backdrop-filter: blur(5px);
-  animation: fadeIn 0.3s ease-out;
+  z-index: 999999;
+  backdrop-filter: blur(12px);
+  animation: fadeIn 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* Modal Content Box */
+/* Fullscreen Modal Content Box */
 .modal-content {
-  background-color: #1a1a1a;
+  background-color: #0a0a0a;
   color: #fff;
-  border-radius: 12px;
-  max-width: 900px;
-  width: 90%;
-  max-height: 90vh;
+  border-radius: 0;
+  width: 100vw;
+  height: 100vh;
+  max-width: 100vw;
+  max-height: 100vh;
   overflow-y: auto;
-  padding: 2rem;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+  padding: 0 10% 4rem;
+  box-sizing: border-box;
   position: relative;
-  animation: slideInFromTop 0.4s ease-out;
   display: flex;
   flex-direction: column;
 }
 
-/* Modal Close Button */
+/* Custom Webkit Scrollbar */
+.modal-content::-webkit-scrollbar {
+  width: 8px;
+}
+.modal-content::-webkit-scrollbar-track {
+  background: #0a0a0a;
+}
+.modal-content::-webkit-scrollbar-thumb {
+  background: #262626;
+  border-radius: 4px;
+}
+.modal-content::-webkit-scrollbar-thumb:hover {
+  background: #404040;
+}
+
+/* Floating Close Button - Fixed at viewport top-right so it never scrolls away */
 .modal-close-btn {
-  position: absolute;
-  top: 15px;
-  right: 20px;
-  background: none;
-  border: none;
-  font-size: 2.5rem;
-  color: #ccc;
+  position: fixed;
+  top: 30px;
+  right: 40px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #fff;
   cursor: pointer;
-  transition: color 0.3s ease;
-  z-index: 10000; /* <-- IMPORTANT: Even higher z-index for the close button within the modal */
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 10000000;
 }
 
 .modal-close-btn:hover {
+  background-color: rgba(255, 255, 255, 0.2);
   color: #fff;
+  transform: rotate(90deg) scale(1.05);
+  box-shadow: 0 4px 15px rgba(255, 255, 255, 0.1);
 }
 
 /* Modal Header */
-.modal-header h2 {
-  font-size: 2.5rem;
+.modal-header {
+  position: sticky;
+  top: 0;
+  background-color: #0a0a0a;
+  z-index: 100;
+  padding-top: 2rem;
   margin-bottom: 1.5rem;
-  text-align: center;
-  color: #fff;
-  font-weight: 800;
 }
 
-/* Modal Body - Contains carousel, description, tech stack, links */
-.modal-body {
+.modal-header h2 {
+  font-size: 3.2rem;
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: -0.5px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding-bottom: 1.5rem;
+  margin: 0;
+  text-align: left;
+}
+
+/* Fullscreen Grid Layout */
+.modal-body-fullscreen {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 4rem;
+  align-items: start;
+  width: 100%;
+}
+
+.modal-left-column {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  width: 100%;
+}
+
+.modal-right-column {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  width: 100%;
+  text-align: left;
 }
 
 /* Carousel Styling */
 .carousel-container {
   position: relative;
   width: 100%;
-  height: 400px;
+  height: 520px;
   overflow: hidden;
-  border-radius: 10px;
-  background-color: #000;
+  border-radius: 16px;
+  background-color: #121212;
   display: flex;
   justify-content: center;
   align-items: center;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .carousel-image {
@@ -84,64 +136,74 @@
   height: 100%;
   object-fit: contain;
   display: block;
-  transition: opacity 0.5s ease-in-out;
-  opacity: 1;
 }
 
+/* Floating Carousel Navigation Buttons */
 .carousel-nav-btn {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background-color: rgba(255, 255, 255, 0.2);
+  background-color: rgba(0, 0, 0, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   color: #fff;
-  border: none;
-  padding: 0.8rem 1.2rem;
-  font-size: 1.8rem;
   cursor: pointer;
   border-radius: 50%;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   z-index: 10;
 }
 
 .carousel-nav-btn:hover {
-  background-color: rgba(255, 255, 255, 0.4);
+  background-color: #fff;
   color: #000;
+  transform: translateY(-50%) scale(1.08);
 }
 
 .carousel-nav-btn.prev {
-  left: 15px;
+  left: 20px;
 }
 
 .carousel-nav-btn.next {
-  right: 15px;
+  right: 20px;
 }
 
-/* Project Description in Modal */
+/* Project Description */
 .modal-full-description {
-  font-size: 1rem;
-  color: #ccc;
-  line-height: 1.7;
-  text-align: left;
+  font-size: 1.1rem;
+  color: #d4d4d4;
+  line-height: 1.8;
+  margin: 0;
+  font-weight: 400;
 }
 
-/* Tech Stack in Modal */
-.modal-tech-stack {
-  text-align: left;
-}
-
+/* Tech Stack */
 .modal-tech-stack h3 {
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   color: #fff;
-  margin-bottom: 0.8rem;
+  margin-top: 0;
+  margin-bottom: 1rem;
   font-weight: 700;
 }
 
-/* Project Links in Modal */
+/* Project Links */
 .modal-links {
   display: flex;
+  flex-wrap: wrap;
   justify-content: flex-start;
-  gap: 1rem;
+  gap: 1.2rem;
   margin-top: 1rem;
+  width: 100%;
+}
+
+.modal-links .btn.project-btn {
+  padding: 0.8rem 2.2rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-align: center;
 }
 
 /* Animations */
@@ -150,60 +212,90 @@
   to { opacity: 1; }
 }
 
-@keyframes slideInFromTop {
-  from { transform: translateY(-50px) scale(0.9); opacity: 0; }
-  to { transform: translateY(0) scale(1); opacity: 1; }
-}
-
-/* Responsive Modal */
-@media (max-width: 900px) {
+/* Responsive Styles */
+@media (max-width: 1024px) {
   .modal-content {
-    max-width: 95%;
-    padding: 1.5rem;
+    padding: 0 6% 3rem;
   }
+  
+  .modal-header {
+    padding-top: 2rem;
+  }
+  
   .modal-header h2 {
-    font-size: 2rem;
+    font-size: 2.6rem;
   }
+  
+  .modal-body-fullscreen {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+  
   .carousel-container {
-    height: 300px;
-  }
-  .carousel-nav-btn {
-    font-size: 1.5rem;
-    padding: 0.6rem 1rem;
+    height: 400px;
   }
 }
 
-@media (max-width: 600px) {
-  .modal-content {
-    padding: 1rem;
+@media (max-width: 768px) {
+  .modal-close-btn {
+    top: 1.5rem;
+    right: 20px;
+    width: 42px;
+    height: 42px;
   }
+  
+  .modal-content {
+    padding: 0 5% 2.5rem;
+  }
+  
+  .modal-header {
+    padding-top: 1.5rem;
+  }
+  
+  .modal-header h2 {
+    font-size: 2.2rem;
+    padding-bottom: 1rem;
+  }
+  
+  .carousel-container {
+    height: 320px;
+  }
+  
+  .modal-full-description {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 500px) {
+  .modal-close-btn {
+    top: 1.2rem;
+    right: 15px;
+    width: 38px;
+    height: 38px;
+  }
+  
+  .modal-content {
+    padding: 0 4% 2rem;
+  }
+  
+  .modal-header {
+    padding-top: 1.2rem;
+  }
+  
   .modal-header h2 {
     font-size: 1.8rem;
   }
+  
   .carousel-container {
     height: 250px;
   }
-  .modal-full-description {
-    font-size: 0.9rem;
-  }
-  .modal-tech-stack h3 {
-    font-size: 1rem;
-  }
-  .tech-tag { /* Assuming tech-tag is defined in project.css and reused */
-    padding: 0.3rem 0.6rem;
-    font-size: 0.75rem;
-  }
+  
   .modal-links {
     flex-direction: column;
     gap: 0.8rem;
   }
-  .btn.project-btn { /* Assuming btn.project-btn is defined in project.css and reused */
+  
+  .modal-links .btn.project-btn {
     width: 100%;
-    text-align: center;
-  }
-  .modal-close-btn {
-    font-size: 2rem;
-    top: 10px;
-    right: 15px;
   }
 }

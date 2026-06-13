@@ -9,16 +9,18 @@
   margin-top: 30px;
   z-index: 1; /* Ensures content is above potential background elements */
 
-  /* Initial state for the section's entry animation */
-  opacity: 0;
-  transform: translateY(15px); /* Starts slightly below its final position */
-  transition: opacity 0.4s ease-out, transform 0.4s ease-out; /* Faster transition for entry */
+  animation: fadeInSection 0.6s ease-out forwards;
 }
 
-/* Class added by JavaScript when section is in view */
-.art-gallery-section.animate-in {
-  opacity: 1;
-  transform: translateY(0);
+@keyframes fadeInSection {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .container {
@@ -60,43 +62,50 @@
   animation: slideInUp 0.4s ease-out 0.2s both; /* Faster animation, further delayed */
 }
 
-/* Gallery Grid */
+/* Gallery Grid (Masonry Flow) */
 .gallery-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* At least 300px, but flexible */
-  gap: 25px; /* Increased gap for better spacing */
-  padding: 0; /* No internal padding for the grid itself, handled by section padding */
+  column-count: 3;
+  column-gap: 25px;
+  width: 100%;
+  padding: 0;
 }
 
 .gallery-item {
+  display: inline-block;
+  width: 100%;
+  margin-bottom: 25px;
+  break-inside: avoid;
   position: relative;
   overflow: hidden;
   cursor: pointer;
-  border-radius: 16px; /* Slightly larger border-radius for modern look */
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  background-color: #111; /* Dark background for items */
-  border: 1px solid #333; /* Subtle border */
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* Initial shadow */
+  border-radius: 16px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  background-color: #111;
+  border: 1px solid #222;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+  
+  /* Staggered entrance animation */
+  opacity: 0;
+  animation: cardAppear 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 .gallery-item:hover {
-  transform: translateY(-8px) scale(1.02); /* Lifts and slightly scales */
-  box-shadow: 0 12px 30px rgba(102, 126, 234, 0.4); /* Accent color glow on hover */
-  border-color: #667eea; /* Accent color border */
+  transform: translateY(-6px) scale(1.01);
+  box-shadow: 0 15px 30px rgba(255, 255, 255, 0.08);
+  border-color: #ffffff;
 }
 
 .gallery-img {
   width: 100%;
-  /* Adjusted height for A4 images */
-  height: 350px; /* Increased height to better fit A4 portrait aspect ratio */
-  border-radius: 16px 16px 0 0; /* Only top corners rounded */
-  object-fit: cover; /* Ensures images cover the area without distortion, might crop edges */
-  display: block; /* Removes extra space below image */
-  transition: transform 0.5s ease; /* Smooth zoom on overlay hover */
+  height: auto;
+  border-radius: 16px;
+  object-fit: contain;
+  display: block;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .gallery-item:hover .gallery-img {
-  transform: scale(1.08); /* Slight zoom on image when hovering item */
+  transform: scale(1.03);
 }
 
 /*
@@ -139,7 +148,9 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.9);
+  background-color: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -148,33 +159,41 @@
 }
 
 .lightbox-img {
-  max-width: 90%;
-  max-height: 90%;
+  max-width: 85%;
+  max-height: 85%;
   border-radius: 12px;
-  box-shadow: 0 0 40px rgba(102, 126, 234, 0.6);
-  animation: zoomIn 0.4s ease;
+  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  animation: lightboxZoomIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   cursor: zoom-out;
-  object-fit: contain; /* Ensures entire image is visible within the lightbox */
+  object-fit: contain;
 }
 
 .lightbox-close-btn {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  background: none;
-  border: none;
+  position: fixed;
+  top: 30px;
+  right: 40px;
+  background: rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.2);
   color: #fff;
   cursor: pointer;
-  padding: 10px;
+  width: 48px;
+  height: 48px;
   border-radius: 50%;
-  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
   z-index: 1001;
 }
 
 .lightbox-close-btn:hover {
   color: #667eea;
-  background-color: rgba(255, 255, 255, 0.1);
-  transform: scale(1.1);
+  background-color: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.4);
+  transform: rotate(90deg) scale(1.05);
 }
 
 /* Animations */
@@ -196,6 +215,28 @@
   }
 }
 
+@keyframes cardAppear {
+  from {
+    opacity: 0;
+    transform: translateY(30px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes lightboxZoomIn {
+  from {
+    opacity: 0;
+    transform: scale(0.92) translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
 @keyframes slideInUp {
   from {
     opacity: 0;
@@ -207,16 +248,42 @@
   }
 }
 
+/* Infinite Scroll Sentinel */
+.infinite-scroll-sentinel {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 3rem 0;
+  margin-top: 2rem;
+}
+
+.loading-spinner {
+  width: 32px;
+  height: 32px;
+  border: 3px solid rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  border-top-color: #fff;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 /* Responsive Design */
 @media (max-width: 992px) {
   .gallery-grid {
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    column-count: 2;
+    column-gap: 20px;
+  }
+  .gallery-item {
+    margin-bottom: 20px;
   }
   .gallery-header h2 {
     font-size: 3rem;
-  }
-  .gallery-img {
-    height: 400px; /* Adjusted height for tablets */
   }
 }
 
@@ -225,8 +292,11 @@
     padding: 3rem 5%;
   }
   .gallery-grid {
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 20px;
+    column-count: 2;
+    column-gap: 15px;
+  }
+  .gallery-item {
+    margin-bottom: 15px;
   }
   .gallery-header h2 {
     font-size: 2.5rem;
@@ -235,32 +305,40 @@
   .gallery-description {
     font-size: 0.95rem;
   }
-  .gallery-img {
-    height: 380px; /* Adjusted height for medium mobile */
+  .lightbox-img {
+    max-width: 92%;
+    max-height: 92%;
+  }
+  .lightbox-close-btn {
+    top: 20px;
+    right: 20px;
+    width: 42px;
+    height: 42px;
   }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 576px) {
   .art-gallery-section {
     padding: 2.5rem 3%;
   }
   .gallery-grid {
-    grid-template-columns: 1fr; /* Single column on mobile */
-    gap: 15px;
+    column-count: 1;
+    column-gap: 0;
+  }
+  .gallery-item {
+    margin-bottom: 15px;
   }
   .gallery-header h2 {
     font-size: 2rem;
   }
-  .gallery-img {
-    height: 300px; /* Keep a decent height for single column on mobile */
+  .lightbox-img {
+    max-width: 95%;
+    max-height: 95%;
   }
   .lightbox-close-btn {
     top: 15px;
     right: 15px;
-    padding: 8px;
-  }
-  .lightbox-close-btn svg {
-    width: 30px;
-    height: 30px;
+    width: 38px;
+    height: 38px;
   }
 }

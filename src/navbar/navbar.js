@@ -42,19 +42,23 @@ const Navbar = ({ basename }) => {
     // Also handle scroll spy for active section highlighting
     const handleScroll = () => {
       // Only run scroll spy if we are on the main portfolio route
-      if (location.pathname === basename || location.pathname === `${basename}/`) {
-        const sections = ['#home', '#about', '#projects', '#hobbies', '#contact'];
+      if (location.pathname === '/' || location.pathname === '') {
+        const sections = ['#home', '#about', '#projects', '#creativeside', '#contact'];
         let currentActive = '#home';
 
-        for (let i = sections.length - 1; i >= 0; i--) {
-          const id = sections[i];
-          const section = document.querySelector(id);
-          if (section) {
-            const rect = section.getBoundingClientRect();
-            // Adjust the 100px threshold if needed for better UX
-            if (rect.top <= 100 && rect.bottom >= 100) {
-              currentActive = id;
-              break;
+        const isAtBottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 100;
+        if (isAtBottom) {
+          currentActive = '#contact';
+        } else {
+          for (let i = sections.length - 1; i >= 0; i--) {
+            const id = sections[i];
+            const section = document.querySelector(id);
+            if (section) {
+              const rect = section.getBoundingClientRect();
+              if (rect.top <= 120) {
+                currentActive = id;
+                break;
+              }
             }
           }
         }
@@ -104,8 +108,13 @@ const Navbar = ({ basename }) => {
           {/* REMOVED: Art Gallery Link (as per your previous request) */}
         </div>
         {/* Hire Me Button */}
-        <a href={`${basename}/Vansh_Rathod-Resume.pdf`} download className="hire-me-btn">
-          Hire Me
+        <a
+          href="https://drive.google.com/file/d/14S2X-MucaFTqoFEHI5fc7J94vqG2aN4L/view?usp=drive_link"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="hire-me-btn"
+        >
+          Resume
         </a>
         {/* Mobile Menu Icon */}
         <div

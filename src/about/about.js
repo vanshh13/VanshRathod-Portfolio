@@ -46,19 +46,25 @@ const About = () => {
         <p className="intro-text">Get to Know Me</p>
         <h2>About Me</h2>
         <p>
-          I'm <b>Vansh</b>, a results-oriented <b>Full-Stack Developer</b> with a strong foundation in building scalable, responsive web applications using
-          <b> React</b>, <b>Node.js</b>, <b>Spring Boot</b>, and <b>MongoDB</b>. I focus on writing clean, efficient, and maintainable code that transforms real-world business requirements into impactful digital solutions.
+          I'm <b>Vansh Rathod</b>, a Computer Engineering graduate and <b>Software Developer</b> with hands-on experience building web applications and full-stack solutions. During my internship, I contributed to the development of a real-world ERP application, gaining practical experience in software development, API integration, database management, and collaborative development workflows.
         </p>
 
         <p>
-          I've successfully delivered diverse projects including e-commerce platforms, portfolio websites, and full-stack applications, showcasing both
-          technical expertise and a user-focused mindset. I’m passionate about solving complex problems, staying current with industry trends, and
-          contributing to teams that value innovation and quality.
+          I enjoy turning ideas into functional software by working across both frontend and backend development. Through professional, academic, and personal projects, I have developed a strong understanding of modern web technologies and software engineering practices, with a focus on writing clean, maintainable, and efficient code.
+        </p>
+
+        <p>
+          I'm passionate about problem-solving, continuous learning, and exploring emerging technologies, particularly in software development and Artificial Intelligence.
         </p>
         <div className="about-buttons">
           <a href="#projects" className="btn">See My Projects</a>
-          <a href="/Vansh_Rathod-Resume.pdf" download className="btn">
-            Download Resume
+          <a
+            href="https://drive.google.com/file/d/14S2X-MucaFTqoFEHI5fc7J94vqG2aN4L/view?usp=drive_link"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn"
+          >
+            View Resume
           </a>
         </div>
       </div>

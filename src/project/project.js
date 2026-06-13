@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './project.css';
-import ProjectDetailModal from './ProjectDetailModal'; 
+import ProjectDetailModal from './ProjectDetailModal';
 
 const Projects = () => {
   const allProjectData = [
@@ -8,46 +8,37 @@ const Projects = () => {
       title: 'GreenCart',
       description: 'An online platform for selling organic products with real-time order tracking and secure payments. Features product Browse, shopping cart, and authenticated user experience.',
       fullDescription: 'GreenCart is a comprehensive e-commerce solution built for organic produce. It provides features like user authentication, shopping cart management, real-time order tracking, and secure payment gateway integration. The intuitive admin panel allows for easy product, order, and user management.', // Added full description
-      techStack: ['React', 'Node.js', 'Express.js', 'MongoDB', 'JWT', 'Stripe API'], 
-      demoLink: 'https://green-cart-pi-sooty.vercel.app/', 
+      techStack: ['React', 'Node.js', 'Express.js', 'MongoDB', 'JWT'],
+      demoLink: 'https://green-cart-pi-sooty.vercel.app/',
       codeLink: 'https://github.com/vanshh13/GreenCart',
-      images: ['./images/projects/GreenCart/GreenCart.png', './images/projects/GreenCart/ProductList.png', './images/projects/GreenCart/ShoppingCart_step1.png','./images/projects/GreenCart/AdminDashboard.png','./images/projects/GreenCart/OrderManagment.png'] // Array of images
+      images: [
+        '/images/projects/GreenCart/GreenCart.png',
+        '/images/projects/GreenCart/ProductsList.png',
+        '/images/projects/GreenCart/ShoppingCart_step1.png',
+        '/images/projects/GreenCart/AdminDashboard.png',
+        '/images/projects/GreenCart/OrderManagement.png'
+      ] // Array of images
     },
     {
-      title: 'Doctor Appointment System',
-      description: 'A web application for patients to book and manage appointments with doctors. Includes features for doctor profiles, availability, and scheduling.',
-      fullDescription: 'This system streamlines the process of booking and managing doctor appointments online. It features a patient portal for scheduling, viewing history, and receiving reminders, alongside a doctor dashboard for managing availability, confirming appointments, and viewing patient details.',
-      techStack: ['React', 'Express.js', 'MongoDB', 'Socket.IO'],
-      demoLink: '#',
-      codeLink: 'https://github.com/vanshh13/Doctor_Appointment_System',
-      images: ['./images/projects/Doctor_Appointment_System/AdminDB.png', './images/projects/Doctor_Appointment_System/PatientDB.png','./images/projects/Doctor_Appointment_System/DoctorDB.png','./images/projects/Doctor_Appointment_System/ReceptionistDB.png','./images/projects/Doctor_Appointment_System/HosptilList.png']
-    },
-    {
-      title: 'Cakes-Pies-Delight',
-      description: 'An online shop built using ASP.NET Core where users can browse, order, and enjoy a variety of cakes and pies.',
-      fullDescription: 'Cakes-Pies-Delight is a robust e-commerce application demonstrating a full shopping experience built with ASP.NET Core. It includes user authentication, product catalog Browse, a shopping cart with quantity management, and a secure checkout process. Admin functionalities for product and order management are also integrated.',
-      techStack: ['ASP.NET Core', 'C#', 'Entity Framework Core', 'SQL Server', 'Razor Pages'],
-      demoLink: '#',
-      codeLink: 'https://github.com/vanshh13/Cakes-Pies-Delight',
-      images: ['./images/projects/Cakes-Pies-Delight/Cakes-pie-delights.png', './images/projects/Cakes-Pies-Delight/product-page.png','./images/projects/Cakes-Pies-Delight/shopping-cart.png']
-    },
-    {
-      title: 'Online BookShop',
-      description: 'An intuitive and user-friendly online bookstore providing customers with a seamless Browse experience and personalized recommendations.',
-      fullDescription: 'This comprehensive online bookstore offers a seamless user experience for Browse, searching, and purchasing books. Key features include user profiles, personalized recommendations based on Browse history, a robust search engine, shopping cart, and order processing. The backend is powered by Django for efficient data management.',
-      techStack: ['Python', 'Django', 'MySQL', 'HTML', 'CSS', 'JavaScript'],
-      demoLink: '#',
-      codeLink: 'https://github.com/vanshh13/Online-BookShop/tree/devlop-branch',
-      images: ['./images/projects/Online_BookShop/Online_BookShop.png', './images/projects/Online_BookShop/Book_Catalog.png','./images/projects/Online_BookShop/Shopping_Cart.png','./images/projects/Online_BookShop/Profile.png','./images/projects/Online_BookShop/Admin_DB.png','./images/projects/Online_BookShop/Manage_Book.png']
-    },
-    {
-      title: 'Doctor Appointment System | RestAPI',
-      description: 'The backend RESTful API for the Doctor Appointment System, handling data management, authentication, and business logic for appointments.',
-      fullDescription: 'This is the robust backend service for the Doctor Appointment System, built with Java Spring Boot. It provides a RESTful API for all client-side interactions, including user authentication (JWT), managing doctor and patient profiles, appointment scheduling, and data persistence with MySQL. Designed for high performance and scalability.',
-      techStack: ['Java', 'Spring Boot', 'MySQL', 'REST API', 'JWT', 'Maven'],
-      demoLink: '#',
-      codeLink: 'https://github.com/vanshh13/AppointmentSystem',
-      images: ['./images/projects/Doctor_Appointment_System_RestAPI.png']
+      title: 'Cronos AI',
+      description: 'A next-generation AI-powered SaaS platform built for modern teams to unify planning, task execution, and insights.',
+      fullDescription: 'Cronos AI is a next-generation AI-powered SaaS platform built for modern teams. It unifies project planning, task execution, and AI-driven insights into one seamless workspace — eliminating the need for multiple disconnected tools. Built for speed, scale, and intelligence.',
+      techStack: ['React', 'TypeScript', 'Socket.IO', 'Node.js', 'Express.js', 'PostgreSQL', 'Groq API', 'Redis', 'Vite', 'Tailwind CSS'],
+      demoLink: 'https://v0-cronos-ai-frontend.vercel.app/',
+      codeLinks: [
+        { label: 'Frontend Code', url: 'https://github.com/sahilundhad09/Cronos-AI-frontend' },
+        { label: 'Backend Code', url: 'https://github.com/sahilundhad09/AI-PROJECT-MANAGER-BACKEND' }
+      ],
+      images: [
+        '/images/projects/CronosAI/landing-page.png',
+        '/images/projects/CronosAI/Dashboard.png',
+        '/images/projects/CronosAI/ai-assistant.png',
+        '/images/projects/CronosAI/project-managment.png',
+        '/images/projects/CronosAI/task-assignment.png',
+        '/images/projects/CronosAI/works-space-creation.png',
+        '/images/projects/CronosAI/analytics-dashboard.png',
+        '/images/projects/CronosAI/invite-member.png'
+      ]
     },
     {
       title: 'Agentic-AI-Hiring-Assistant',
@@ -56,7 +47,66 @@ const Projects = () => {
       techStack: ['Python', 'Node.js', 'React.js', 'Vite', 'Tailwind CSS', 'MongoDB', 'AI/ML (for agentic capabilities)'], // Added database and AI/ML explicitly
       demoLink: '#',
       codeLink: 'https://github.com/vanshh13/Agentic-AI-Hiring-Assistant',
-      images: ['./images/projects/Agentic-AI-Hiring-Assistant/Agentic-AI-Hiring-Assistant.png','./images/projects/Agentic-AI-Hiring-Assistant/cadiadate_DB.png','./images/projects/Agentic-AI-Hiring-Assistant/Hr_DB.png','./images/projects/Agentic-AI-Hiring-Assistant/All_job_application.png','./images/projects/Agentic-AI-Hiring-Assistant/browse_job.png'] 
+      images: [
+        '/images/projects/Agentic-AI-Hiring-Assistant/Agentic-AI-Hiring-Assistant.png',
+        '/images/projects/Agentic-AI-Hiring-Assistant/cadiadate_DB.png',
+        '/images/projects/Agentic-AI-Hiring-Assistant/Hr_DB.png',
+        '/images/projects/Agentic-AI-Hiring-Assistant/All_job_application.png',
+        '/images/projects/Agentic-AI-Hiring-Assistant/browse_job.png'
+      ]
+    },
+    {
+      title: 'Doctor Appointment System',
+      description: 'A web application for patients to book and manage appointments with doctors. Includes features for doctor profiles, availability, and scheduling.',
+      fullDescription: 'This system streamlines the process of booking and managing doctor appointments online. It features a patient portal for scheduling, viewing history, and receiving reminders, alongside a doctor dashboard for managing availability, confirming appointments, and viewing patient details.',
+      techStack: ['React', 'Express.js', 'MongoDB', 'Socket.IO'],
+      demoLink: '#',
+      codeLink: 'https://github.com/vanshh13/Doctor_Appointment_System',
+      images: [
+        '/images/projects/Doctor_Appointment_System/AdminDB.png',
+        '/images/projects/Doctor_Appointment_System/PatientDB.png',
+        '/images/projects/Doctor_Appointment_System/DoctorDB.png',
+        '/images/projects/Doctor_Appointment_System/ReceptionistDB.png',
+        '/images/projects/Doctor_Appointment_System/HosptilList.png'
+      ]
+    },
+    {
+      title: 'Cakes-Pies-Delight',
+      description: 'An online shop built using ASP.NET Core where users can browse, order, and enjoy a variety of cakes and pies.',
+      fullDescription: 'Cakes-Pies-Delight is a robust e-commerce application demonstrating a full shopping experience built with ASP.NET Core. It includes user authentication, product catalog Browse, a shopping cart with quantity management, and a secure checkout process. Admin functionalities for product and order management are also integrated.',
+      techStack: ['ASP.NET Core', 'C#', 'Entity Framework Core', 'SQL Server', 'Razor Pages'],
+      demoLink: '#',
+      codeLink: 'https://github.com/vanshh13/Cakes-Pies-Delight',
+      images: [
+        '/images/projects/Cakes-Pies-Delight/Cakes-pie-delights.png',
+        '/images/projects/Cakes-Pies-Delight/product-page.png',
+        '/images/projects/Cakes-Pies-Delight/shopping-cart.png'
+      ]
+    },
+    {
+      title: 'Online BookShop',
+      description: 'An intuitive and user-friendly online bookstore providing customers with a seamless Browse experience and personalized recommendations.',
+      fullDescription: 'This comprehensive online bookstore offers a seamless user experience for Browse, searching, and purchasing books. Key features include user profiles, personalized recommendations based on Browse history, a robust search engine, shopping cart, and order processing. The backend is powered by Django for efficient data management.',
+      techStack: ['Python', 'Django', 'MySQL', 'HTML', 'CSS', 'JavaScript'],
+      demoLink: '#',
+      codeLink: 'https://github.com/vanshh13/Online-BookShop/tree/devlop-branch',
+      images: [
+        '/images/projects/Online_BookShop/Online_BookShop.png',
+        '/images/projects/Online_BookShop/Book_Catalog.png',
+        '/images/projects/Online_BookShop/Shopping_Cart.png',
+        '/images/projects/Online_BookShop/Profile.png',
+        '/images/projects/Online_BookShop/Admin_DB.png',
+        '/images/projects/Online_BookShop/Manage_Book.png'
+      ]
+    },
+    {
+      title: 'Doctor Appointment System | RestAPI',
+      description: 'The backend RESTful API for the Doctor Appointment System, handling data management, authentication, and business logic for appointments.',
+      fullDescription: 'This is the robust backend service for the Doctor Appointment System, built with Java Spring Boot. It provides a RESTful API for all client-side interactions, including user authentication (JWT), managing doctor and patient profiles, appointment scheduling, and data persistence with MySQL. Designed for high performance and scalability.',
+      techStack: ['Java', 'Spring Boot', 'MySQL', 'REST API', 'JWT', 'Maven'],
+      demoLink: '#',
+      codeLink: 'https://github.com/vanshh13/AppointmentSystem',
+      images: ['/images/projects/Doctor_Appointment_System_RestAPI.png']
     },
   ];
 
@@ -138,13 +188,10 @@ const Projects = () => {
         <h2>Projects</h2>
         <div className="project-grid">
           {allProjectData.slice(0, displayedProjects).map((project, index) => (
-            <div className="project-card" key={index}>
-              <div
-                className="project-image-container"
-                onClick={() => openModal(project)} // Open modal on image click
-              >
+            <div className="project-card" key={index} onClick={() => openModal(project)}>
+              <div className="project-image-container">
                 <img
-                  src={project.images[0]} // Always display the first image in the grid view
+                  src={process.env.PUBLIC_URL + project.images[0]} // Always display the first image in the grid view
                   alt={project.title}
                   className="project-main-image"
                 />
@@ -156,15 +203,24 @@ const Projects = () => {
               <h3>{project.title}</h3>
               <p className="description">{project.description}</p>
               <div className="tech-stack-container">
-                {project.techStack.map((tech, i) => (
+                {project.techStack.slice(0, 5).map((tech, i) => (
                   <span key={i} className="tech-tag">{tech}</span>
                 ))}
+                {project.techStack.length > 5 && (
+                  <span className="tech-tag" style={{ opacity: 0.75 }}>+{project.techStack.length - 5}</span>
+                )}
               </div>
-              <div className="project-links">
+              <div className="project-links" onClick={(e) => e.stopPropagation()}>
+                {project.codeLinks ? (
+                  project.codeLinks.map((link, idx) => (
+                     <a key={idx} href={link.url} target="_blank" rel="noopener noreferrer" className="btn project-btn">{link.label}</a>
+                  ))
+                ) : (
+                  <a href={project.codeLink} target="_blank" rel="noopener noreferrer" className="btn project-btn">Source Code</a>
+                )}
                 {project.demoLink && project.demoLink !== '#' && (
                   <a href={project.demoLink} target="_blank" rel="noopener noreferrer" className="btn project-btn">Live Demo</a>
                 )}
-                <a href={project.codeLink} target="_blank" rel="noopener noreferrer" className="btn project-btn">Source Code</a>
               </div>
             </div>
           ))}
