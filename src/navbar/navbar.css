@@ -47,11 +47,11 @@
 .navbar::after {
   content: '';
   position: absolute;
-  inset: 1.5px;
+  inset: 2px;
   background-color: rgba(0, 0, 0, 0.75);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border-radius: 49px;
+  border-radius: 48px;
   z-index: 1;
   transition: background-color 0.5s cubic-bezier(0.16, 1, 0.3, 1),
     backdrop-filter 0.5s cubic-bezier(0.16, 1, 0.3, 1);

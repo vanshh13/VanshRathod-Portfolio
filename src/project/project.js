@@ -12,11 +12,11 @@ const Projects = () => {
       demoLink: 'https://green-cart-pi-sooty.vercel.app/',
       codeLink: 'https://github.com/vanshh13/GreenCart',
       images: [
-        '/images/projects/GreenCart/GreenCart.png',
-        '/images/projects/GreenCart/ProductsList.png',
-        '/images/projects/GreenCart/ShoppingCart_step1.png',
-        '/images/projects/GreenCart/AdminDashboard.png',
-        '/images/projects/GreenCart/OrderManagement.png'
+        '/images/projects/GreenCart/webp/GreenCart.webp',
+        '/images/projects/GreenCart/webp/ProductsList.webp',
+        '/images/projects/GreenCart/webp/ShoppingCart_step1.webp',
+        '/images/projects/GreenCart/webp/AdminDashboard.webp',
+        '/images/projects/GreenCart/webp/OrderManagement.webp'
       ] // Array of images
     },
     {
@@ -30,14 +30,14 @@ const Projects = () => {
         { label: 'Backend Code', url: 'https://github.com/sahilundhad09/AI-PROJECT-MANAGER-BACKEND' }
       ],
       images: [
-        '/images/projects/CronosAI/landing-page.png',
-        '/images/projects/CronosAI/Dashboard.png',
-        '/images/projects/CronosAI/ai-assistant.png',
-        '/images/projects/CronosAI/project-managment.png',
-        '/images/projects/CronosAI/task-assignment.png',
-        '/images/projects/CronosAI/works-space-creation.png',
-        '/images/projects/CronosAI/analytics-dashboard.png',
-        '/images/projects/CronosAI/invite-member.png'
+        '/images/projects/CronosAI/webp/landing-page.webp',
+        '/images/projects/CronosAI/webp/Dashboard.webp',
+        '/images/projects/CronosAI/webp/ai-assistant.webp',
+        '/images/projects/CronosAI/webp/project-managment.webp',
+        '/images/projects/CronosAI/webp/task-assignment.webp',
+        '/images/projects/CronosAI/webp/works-space-creation.webp',
+        '/images/projects/CronosAI/webp/analytics-dashboard.webp',
+        '/images/projects/CronosAI/webp/invite-member.webp'
       ]
     },
     {
@@ -48,11 +48,11 @@ const Projects = () => {
       demoLink: '#',
       codeLink: 'https://github.com/vanshh13/Agentic-AI-Hiring-Assistant',
       images: [
-        '/images/projects/Agentic-AI-Hiring-Assistant/Agentic-AI-Hiring-Assistant.png',
-        '/images/projects/Agentic-AI-Hiring-Assistant/cadiadate_DB.png',
-        '/images/projects/Agentic-AI-Hiring-Assistant/Hr_DB.png',
-        '/images/projects/Agentic-AI-Hiring-Assistant/All_job_application.png',
-        '/images/projects/Agentic-AI-Hiring-Assistant/browse_job.png'
+        '/images/projects/Agentic-AI-Hiring-Assistant/webp/Agentic-AI-Hiring-Assistant.webp',
+        '/images/projects/Agentic-AI-Hiring-Assistant/webp/cadiadate_DB.webp',
+        '/images/projects/Agentic-AI-Hiring-Assistant/webp/Hr_DB.webp',
+        '/images/projects/Agentic-AI-Hiring-Assistant/webp/All_job_application.webp',
+        '/images/projects/Agentic-AI-Hiring-Assistant/webp/browse_job.webp'
       ]
     },
     {
@@ -63,11 +63,11 @@ const Projects = () => {
       demoLink: '#',
       codeLink: 'https://github.com/vanshh13/Doctor_Appointment_System',
       images: [
-        '/images/projects/Doctor_Appointment_System/AdminDB.png',
-        '/images/projects/Doctor_Appointment_System/PatientDB.png',
-        '/images/projects/Doctor_Appointment_System/DoctorDB.png',
-        '/images/projects/Doctor_Appointment_System/ReceptionistDB.png',
-        '/images/projects/Doctor_Appointment_System/HosptilList.png'
+        '/images/projects/Doctor_Appointment_System/webp/AdminDB.webp',
+        '/images/projects/Doctor_Appointment_System/webp/PatientDB.webp',
+        '/images/projects/Doctor_Appointment_System/webp/DoctorDB.webp',
+        '/images/projects/Doctor_Appointment_System/webp/ReceptionistDB.webp',
+        '/images/projects/Doctor_Appointment_System/webp/HosptilList.webp'
       ]
     },
     {
@@ -78,9 +78,9 @@ const Projects = () => {
       demoLink: '#',
       codeLink: 'https://github.com/vanshh13/Cakes-Pies-Delight',
       images: [
-        '/images/projects/Cakes-Pies-Delight/Cakes-pie-delights.png',
-        '/images/projects/Cakes-Pies-Delight/product-page.png',
-        '/images/projects/Cakes-Pies-Delight/shopping-cart.png'
+        '/images/projects/Cakes-Pies-Delight/webp/Cakes-pie-delights.webp',
+        '/images/projects/Cakes-Pies-Delight/webp/product-page.webp',
+        '/images/projects/Cakes-Pies-Delight/webp/shopping-cart.webp'
       ]
     },
     {
@@ -91,12 +91,12 @@ const Projects = () => {
       demoLink: '#',
       codeLink: 'https://github.com/vanshh13/Online-BookShop/tree/devlop-branch',
       images: [
-        '/images/projects/Online_BookShop/Online_BookShop.png',
-        '/images/projects/Online_BookShop/Book_Catalog.png',
-        '/images/projects/Online_BookShop/Shopping_Cart.png',
-        '/images/projects/Online_BookShop/Profile.png',
-        '/images/projects/Online_BookShop/Admin_DB.png',
-        '/images/projects/Online_BookShop/Manage_Book.png'
+        '/images/projects/Online_BookShop/webp/Online_BookShop.webp',
+        '/images/projects/Online_BookShop/webp/Book_Catalog.webp',
+        '/images/projects/Online_BookShop/webp/Shopping_Cart.webp',
+        '/images/projects/Online_BookShop/webp/Profile.webp',
+        '/images/projects/Online_BookShop/webp/Admin_DB.webp',
+        '/images/projects/Online_BookShop/webp/Manage_Book.webp'
       ]
     },
     {
@@ -106,7 +106,7 @@ const Projects = () => {
       techStack: ['Java', 'Spring Boot', 'MySQL', 'REST API', 'JWT', 'Maven'],
       demoLink: '#',
       codeLink: 'https://github.com/vanshh13/AppointmentSystem',
-      images: ['/images/projects/Doctor_Appointment_System_RestAPI.png']
+      images: ['/images/projects/webp/Doctor_Appointment_System_RestAPI.webp']
     },
   ];
 

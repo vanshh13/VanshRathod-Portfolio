@@ -83,6 +83,7 @@ const Navbar = ({ basename }) => {
   return (
     <div className={`navbar-container ${isScrolled ? 'scrolled' : ''}`}>
       <nav className={`navbar ${isScrolled ? 'navbar-scrolled' : ''}`}>
+        <div className="navbar-bg-wrapper"></div>
         {/* Logo - links to home section of the main page */}
         <Link to="/" className="logo" onClick={() => handleNavLinkClick('/', '#home')}>
           Vansh
