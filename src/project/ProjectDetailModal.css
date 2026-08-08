@@ -191,19 +191,28 @@
 
 /* Project Links */
 .modal-links {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-  gap: 1.2rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 9rem), 1fr));
+  gap: 0.75rem;
   margin-top: 1rem;
   width: 100%;
 }
 
 .modal-links .btn.project-btn {
-  padding: 0.8rem 2.2rem;
-  font-size: 0.95rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+  padding: 0.75rem 1.25rem;
+  font-size: clamp(0.78rem, 2.5vw, 0.95rem);
   font-weight: 600;
+  line-height: 1.25;
   text-align: center;
+  box-sizing: border-box;
+  white-space: normal;
+  word-break: break-word;
 }
 
 /* Animations */
@@ -264,6 +273,15 @@
   .modal-full-description {
     font-size: 1rem;
   }
+
+  .modal-links {
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 7.5rem), 1fr));
+    gap: 0.65rem;
+  }
+
+  .modal-links .btn.project-btn {
+    padding: 0.7rem 1rem;
+  }
 }
 
 @media (max-width: 500px) {
@@ -291,11 +309,7 @@
   }
   
   .modal-links {
-    flex-direction: column;
-    gap: 0.8rem;
-  }
-  
-  .modal-links .btn.project-btn {
-    width: 100%;
+    grid-template-columns: 1fr;
+    gap: 0.65rem;
   }
 }

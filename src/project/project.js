@@ -5,6 +5,22 @@ import ProjectDetailModal from './ProjectDetailModal';
 const Projects = () => {
   const allProjectData = [
     {
+      title: 'VFabrica',
+      description: 'A platform for verified fabric suppliers to connect with wholesale buyers and get AI-assisted sourcing recommendations.',
+      fullDescription: 'VFabrica connects verified fabric suppliers with wholesale buyers on a single platform. Buyers can browse catalogs, compare specifications, manage carts and orders, and get AI-assisted sourcing recommendations—without needing an account to explore products. Suppliers manage listings, inventory, warehouses, and order fulfillment. Administrators oversee users, categories, and supplier verification.', // Added full description
+      techStack: ['React', 'Node.js', 'Express.js', 'PostgreSQL', 'JWT', 'WebSocket', 'LLM API', 'Tailwind CSS', 'Vite'],
+      demoLink: 'https://vfabrica.vercel.app/',
+      codeLink: 'https://github.com/vanshh13/VFabrica',
+      images: [
+        '/images/projects/VFabrica/landing.webp',
+        '/images/projects/VFabrica/product-catalog.webp',
+        '/images/projects/VFabrica/product-Feature-catalog.webp',
+        '/images/projects/VFabrica/buyers-myorders.webp',
+        '/images/projects/VFabrica/admin-dashboard.webp',
+        '/images/projects/VFabrica/supplier-dashboard.webp',
+      ] // Array of images
+    },
+    {
       title: 'GreenCart',
       description: 'An online platform for selling organic products with real-time order tracking and secure payments. Features product Browse, shopping cart, and authenticated user experience.',
       fullDescription: 'GreenCart is a comprehensive e-commerce solution built for organic produce. It provides features like user authentication, shopping cart management, real-time order tracking, and secure payment gateway integration. The intuitive admin panel allows for easy product, order, and user management.', // Added full description
